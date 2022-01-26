@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+.App {
+    width: 950px;
+    margin: auto;
+    display: block;
+}
+
+@media (max-width:950px) {
+    .App {
+        width: 95%;
+    }
+}
