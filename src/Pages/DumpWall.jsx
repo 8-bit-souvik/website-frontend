@@ -11,6 +11,7 @@ const DumpWall = () => {
         <IdeaCard />
         <Footer />
       </div>
+      <div className="copyright">Copyright &copy; 2021 Dezenix</div>
     </>
   );
 };

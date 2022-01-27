@@ -1,5 +1,5 @@
 import React from "react";
-import "./Footer.css";
+import "./footer.css";
 
 import discord from "../../../images/discord.svg";
 import github from "../../../images/github.svg";

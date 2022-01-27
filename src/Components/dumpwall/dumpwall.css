@@ -1,3 +1,9 @@
+.dump_wall {
+  width: 950px;
+  margin: auto;
+  display: block;
+}
+
 .nav__bar {
   width: auto;
   height: fit-content;
@@ -214,6 +220,22 @@
 
 .comment__share__img {
   margin-right: 0.5rem;
+}
+
+.copyright {
+  width: 100%;
+  padding: 1.8rem 0;
+  background-color: rgba(8, 60, 93, 0.5);
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 400;
+  text-align: center;
+}
+
+@media (max-width: 950px) {
+  .dump_wall {
+    width: 95%;
+  }
 }
 
 @media (min-width: 625px) {
