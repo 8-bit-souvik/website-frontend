@@ -7,20 +7,20 @@ const Navbar = () => {
   const [burgerStatus, setBurgerStatus] = useState("close");
   return (
     <>
-      <nav class="nav__bar">
+      <nav className="nav__bar">
         <div className="navigation">
-          <span class="logo">
+          <span className="logo">
             <img
               src={logo}
               title="Dezenix"
               alt="Dezenix logo"
-              class="logo__img"
+              className="logo__img"
             />
           </span>
-          <div class="navbar__buttons">
-            <button class="navigation__buttons">home</button>
-            <button class="navigation__buttons">about us</button>
-            <button id="submit__idea" class="navigation__buttons">
+          <div className="navbar__buttons">
+            <button className="navigation__buttons">home</button>
+            <button className="navigation__buttons">about us</button>
+            <button id="submit__idea" className="navigation__buttons">
               submit idea
             </button>
           </div>
@@ -37,15 +37,15 @@ const Navbar = () => {
             <i className={burgerStatus}></i>
             <i className={burgerStatus}></i>
           </div>
-          <span class="logo">
+          <span className="logo">
             <img
               src={logo}
               title="Dezenix"
               alt="Dezenix logo"
-              class="logo__img"
+              className="logo__img"
             />
           </span>
-          <button id="submit__idea" class="navigation__buttons">
+          <button id="submit__idea" className="navigation__buttons">
             submit idea
           </button>
         </div>
@@ -53,7 +53,7 @@ const Navbar = () => {
       <div id={burgerStatus}>
         <button
           id="burger__buttons"
-          class="navigation__buttons"
+          className="navigation__buttons"
           onClick={() =>
             setBurgerStatus(burgerStatus === "open" ? "close" : "open")
           }
@@ -62,7 +62,7 @@ const Navbar = () => {
         </button>
         <button
           id="burger__buttons"
-          class="navigation__buttons"
+          className="navigation__buttons"
           onClick={() =>
             setBurgerStatus(burgerStatus === "open" ? "close" : "open")
           }
