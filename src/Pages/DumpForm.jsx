@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import "../Components/dumpwall/dumpwall.css";
 import { addDoc } from "firebase/firestore";
 import { ideaRef } from "../firebase";
+
+import upload from "../../images/upload.svg";
 
 const DumpForm = () => {
   const [formData, setformData] = useState({ name: "", email: "", description: "" });
@@ -18,26 +21,37 @@ const DumpForm = () => {
       description:formData.description,
     }).then(() => {
       setformData({ name: "", email: "", description: "" });
-      alert("Idea Submitted")
+      alert("Idea Submitted");
     });
   };
 
   return (
     <>
       <div className="dump_form">
-        <form>
-          <label htmlFor="name">Idea Name:</label>
-          <input type="text" name="name" onChange={handleChange} required />
-          <label htmlFor="email">Email:</label>
-          <input type="email" name="email" onChange={handleChange} required />
-          <label htmlFor="description">Idea Description:</label>
+        <heading className="form__heading">
+          <h1 id="greeting__msg">Hi There &#128075;</h1>
+          <p id="form__msg">Feel free to share your ideas and community will help you to turn it into a product.</p>
+        </heading>
+        <form className="form__container">
+          <label htmlFor="name" className="input__lables">Enter your full name<span className="asteriks">*</span></label>
+          <input className="input__field" type="text" id="name" value={formData.name} onChange={handleChange} required autoComplete="off" />
+          <label htmlFor="email" className="input__lables">Enter email address<span className="asteriks">*</span></label>
+          <input className="input__field" type="email" id="email" value={formData.email} onChange={handleChange} required autoComplete="off" />
+          <label htmlFor="description" className="input__lables">Brief Description of Idea<span className="asteriks">*</span></label>
           <textarea
+            className="input__field text__area"
             type="text"
-            name="description"
+            id="description"
+            value={formData.description}
             onChange={handleChange}
             required
+            autoComplete="off"
           />
-          <button type="submit" onClick={submitIdea}>
+          <label htmlFor="dropzone" className="input__lables">Please share Graphical Discription (If any)</label>
+          <div className="input__field drop__zone" id="dropzone" title="Drop Your Graphical Discription Here">
+            <img src={upload} alt="" id="upload__icon" />
+          </div>
+          <button title="Click to Submit Your Idea" id="submit__button" type="submit" onClick={submitIdea}>
             submit idea
           </button>
         </form>
