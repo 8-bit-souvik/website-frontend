@@ -6,9 +6,12 @@ import { ideaRef } from "../../firebase";
 import vote from "../../../images/vote.svg";
 import comment from "../../../images/comment.svg";
 import share from "../../../images/share.svg";
+import upload from "../../../images/upload.svg"
 
 const IdeaCard = () => {
   const [ideaList, setIdeaList] = useState([]);
+  const [listSize, setListSize] = useState(4);
+  const [listDisplayAction, setAction] = useState("View More");
 
   // get collection data
   useEffect(() => {
@@ -25,15 +28,29 @@ const IdeaCard = () => {
       });
   }, []);
 
+  const ideaListSize = ideaList.length;
+
+  const handleListSize = () => {
+    (listDisplayAction !== "View More") ? setListSize(4) : setListSize(listSize + 4);
+    if (listSize + 4 >= ideaListSize) {
+        setAction("View Less");
+    }
+    if (listSize >= ideaListSize) {
+        setAction("View More");
+    }
+  }
+
   return (
     <>
       <section className="idea__card">
-        <h1 className="heading">Trending Idea..</h1>
+        <h1 className="heading">Trending Ideas...</h1>
 
-        {ideaList.map((idea) => {
+        {ideaList.slice(0, listSize).map((idea) => {
           return (
             <div key={idea.id} className="card__container">
-              <span className="card__img__container"></span>
+              <div className="card__img__container">
+                <img src={upload} alt="" id="idea__img" />
+              </div>
               <div className="idea__description__container">
                 <h3 className="idea__name">{idea.name}</h3>
                 <p className="idea__description">{idea.description}</p>
@@ -48,16 +65,18 @@ const IdeaCard = () => {
                   </p>
                 </span>
               </div>
-
-              <span className="vote__container">
-                <img src={vote} alt="" className="vote__img" />
+              <div className="vote__container">
+                <img title="Upvote this idea" src={vote} alt="" id="vote__img" />
                 {/* <p className="vote__count">
               {upVote}
             </p> */}
-              </span>
+              </div>
             </div>
           );
         })}
+        <div className={(ideaListSize > 4) ? "viewmore" : "hide"}>
+                <button className="viewmore__button" onClick={handleListSize}>{listDisplayAction}</button>
+        </div>
       </section>
     </>
   );

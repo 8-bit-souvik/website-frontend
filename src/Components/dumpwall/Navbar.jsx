@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Routes, Route, Link } from "react-router-dom";
+import DumpForm from "../../Pages/DumpForm";
 import "./dumpwall.css";
 
 import logo from "../../../images/logo.svg";
@@ -45,9 +47,9 @@ const Navbar = () => {
               className="logo__img"
             />
           </span>
-          <button id="submit__idea" className="navigation__buttons">
-            submit idea
-          </button>
+          <Link to="/submitIdea">
+            <button id="submit__idea" className="navigation__buttons">submit idea</button>
+          </Link>
         </div>
       </nav>
       <div id={burgerStatus}>
@@ -70,6 +72,9 @@ const Navbar = () => {
           about us
         </button>
       </div>
+      <Routes>
+          <Route path="/submitIdea" element={<DumpForm />} />
+      </Routes>
     </>
   );
 };
