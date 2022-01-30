@@ -27,7 +27,7 @@ const Footer = () => {
             Incase of any query or <br />
             suggestion feel free to reach us.
           </h2>
-          <a href="mailto:support@dezenix.org">
+          <a style={{width: "100%"}} href="mailto:support@dezenix.org">
             <div className="email__link">
               <p className="email">support@dezenix.org</p>
               <img id="email__link__icon" src={linkicon} alt="" />

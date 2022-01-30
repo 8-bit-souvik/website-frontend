@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "../Components/dumpwall/dumpwall.css";
 import { addDoc } from "firebase/firestore";
 import { ideaRef } from "../firebase";
@@ -7,6 +8,7 @@ import upload from "../../images/upload.svg";
 
 const DumpForm = () => {
   const [formData, setformData] = useState({ name: "", email: "", description: "" });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setformData((prevState) => ({...prevState, [e.target.name]: e.target.value, }));
@@ -15,19 +17,23 @@ const DumpForm = () => {
   const submitIdea = (e) => {
     e.preventDefault();
 
-    addDoc(ideaRef, {
-      name:formData.name,
-      email:formData.email,
-      description:formData.description,
-    }).then(() => {
-      setformData({ name: "", email: "", description: "" });
-      alert("Idea Submitted");
-    });
+    if((formData.name && formData.email && formData.description)) {
+      addDoc(ideaRef, {
+        name:formData.name,
+        email:formData.email,
+        description:formData.description,
+      }).then(() => {
+        setformData({ name: "", email: "", description: "" });
+        alert("Idea Submitted");
+        navigate("/");
+      });
+    }
   };
 
   return (
     <>
       <div className="dump_form">
+        <Link to="/"><button className="cancel__form">X</button></Link>
         <heading className="form__heading">
           <h1 id="greeting__msg">Hi There &#128075;</h1>
           <p id="form__msg">Feel free to share your ideas and community will help you to turn it into a product.</p>
@@ -47,7 +53,7 @@ const DumpForm = () => {
             required
             autoComplete="off"
           />
-          <label htmlFor="dropzone" className="input__lables">Please share Graphical Discription (If any)</label>
+          <label htmlFor="dropzone" className="input__lables">Please share Graphical Description (If any)</label>
           <div className="input__field drop__zone" id="dropzone" title="Drop Your Graphical Discription Here">
             <img src={upload} alt="" id="upload__icon" />
           </div>

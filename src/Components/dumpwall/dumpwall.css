@@ -1,3 +1,7 @@
+a {
+  width: fit-content;
+}
+
 .dump_wall {
   width: 950px;
   margin: auto;
@@ -6,10 +10,14 @@
 
 .nav__bar {
   width: auto;
+  background-color: white;
   height: fit-content;
   padding: 20px 0;
   margin-top: 10px;
   display: block;
+  position: sticky;
+  top: 0;
+  z-index: 99999;
 }
 
 .navigation {
@@ -140,6 +148,7 @@
 }
 
 #submit__idea {
+  width: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -294,6 +303,23 @@
   box-shadow: 0 1px 7.5px #000000;
 }
 
+.cancel__form {
+  width: 10px;
+  height: 10px;
+  margin-left: 95%;
+  padding: 15px;
+  background-color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: bolder;
+  color: #2D2F30;
+  border: 2px solid #2D2F30;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
 .form__heading {
   width: 100%;
   display: flex;
@@ -378,6 +404,7 @@
 }
 
 #submit__button {
+  width: 100%;
   margin-top: 1.5rem;
   background-color: #083C5D;
   padding: 10px 0;
@@ -435,6 +462,7 @@
   }
 
   .mobile__navigation {
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -470,5 +498,9 @@
     width: 95%;
     padding: 20px 30px;
     margin: 0.5rem auto;
+  }
+
+  .cancel__form {
+    margin-left: 90%;
   }
 }

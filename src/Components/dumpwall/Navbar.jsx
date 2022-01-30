@@ -20,11 +20,11 @@ const Navbar = () => {
             />
           </span>
           <div className="navbar__buttons">
-            <button className="navigation__buttons">home</button>
+            <Link to="/"><button className="navigation__buttons">home</button></Link>
             <button className="navigation__buttons">about us</button>
-            <button id="submit__idea" className="navigation__buttons">
-              submit idea
-            </button>
+            <Link to="/submitIdea">
+              <button id="submit__idea" className="navigation__buttons">submit idea</button>
+            </Link>
           </div>
         </div>
         <div className="mobile__navigation">
@@ -53,15 +53,17 @@ const Navbar = () => {
         </div>
       </nav>
       <div id={burgerStatus}>
-        <button
-          id="burger__buttons"
-          className="navigation__buttons"
-          onClick={() =>
-            setBurgerStatus(burgerStatus === "open" ? "close" : "open")
-          }
-        >
-          home
-        </button>
+        <Link to="/">
+          <button
+            id="burger__buttons"
+            className="navigation__buttons"
+            onClick={() =>
+              setBurgerStatus(burgerStatus === "open" ? "close" : "open")
+            }
+          >
+            home
+          </button>
+        </Link>
         <button
           id="burger__buttons"
           className="navigation__buttons"
