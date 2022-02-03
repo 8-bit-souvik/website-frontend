@@ -1,38 +1,38 @@
 import React from "react";
-import "./footer.css";
-
-import discord from "../../../images/discord.svg";
-import github from "../../../images/github.svg";
-import instagram from "../../../images/instagram.svg";
-import linkedin from "../../../images/linkedin.svg";
-import twitter from "../../../images/twitter.svg";
-import linkicon from "../../../images/link_icon.svg";
+import "./Footer.css";
+import images from "../../../assets/images.jsx";
 
 const Footer = () => {
   return (
     <>
-      <div className="footer">
-        <div id="left__footer__container" className="footer__container">
-          <h2 id="h2__text">Join Us Now</h2>
-          <span className="join__link__icons">
-            {/* <img id="github__icon" className="link__icons" src={github} alt="" /> */}
-            <img className="link__icons" src={linkedin} alt="" />
-            <img className="link__icons" src={discord} alt="" />
-            <img className="link__icons" src={instagram} alt="" />
-            <img className="link__icons" src={twitter} alt="" />
-          </span>
+      <div className="dumpwall__footer flex__justify section__padding">
+        <div className="dumpwall__footer-container">
+          <div className="dumpwall__footer-container-heading">
+            <img src={images.dezenixLogo} title="Dezenix" alt="Dezenix logo" />
+            <h2 style={{ fontSize: "25px" }} className="p__bold">
+              dezenix
+            </h2>
+          </div>
+          <p className="footer__para" style={{ fontWeight: "200" }}>
+            Dezenix is a community of kick🍑 developers and designers.
+            <br />
+            Learning together and growing together each and every day.
+          </p>
         </div>
-        <div id="right__footer__container" className="footer__container">
-          <h2 className="h2__text">
-            Incase of any query or <br />
-            suggestion feel free to reach us.
+        <div className="dumpwall__footer-container">
+          <h2
+            style={{ padding: "4px 0" }}
+            className="p__bold dumpwall__footer-container-heading"
+          >
+            Join Us Now
           </h2>
-          <a style={{width: "100%"}} href="mailto:support@dezenix.org">
-            <div className="email__link">
-              <p className="email">support@dezenix.org</p>
-              <img id="email__link__icon" src={linkicon} alt="" />
-            </div>
-          </a>
+          <span className="join__link__icons">
+            <img className="link__icons" src={images.githubIcon} alt="" />
+            <img className="link__icons" src={images.linkedinIcon} alt="" />
+            <img className="link__icons" src={images.discordIcon} alt="" />
+            <img className="link__icons" src={images.instagramIcon} alt="" />
+            <img className="link__icons" src={images.twitterIcon} alt="" />
+          </span>
         </div>
       </div>
     </>

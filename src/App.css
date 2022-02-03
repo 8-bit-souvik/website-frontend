@@ -1,8 +1,81 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+.body__bg {
+  min-height: 100vh;
+  background-image: radial-gradient(circle at 0% 0%, #80ed99 0, #006ead 20%);
+}
 
-* {
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
-  font-family: "Poppins", sans-serif;
+.section__padding {
+  padding: 40px 15vw;
+}
+
+.flex__center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex__justify {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.p__normal {
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  font-size: 12px;
+}
+
+.p__bold {
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  font-size: 20px;
+}
+
+.custom__button {
+  background-color: transparent;
+  border: 1px solid var(--color-theme-green);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  font-size: 12px;
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
+  text-transform: uppercase;
+  outline: none;
+  cursor: pointer;
+  color: unset;
+}
+
+@media screen and (min-width: 2000px) {
+  .p__normal {
+    font-size: 20px;
+  }
+
+  .p__bold {
+    font-size: 25px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .flex__row__justify {
+    flex-direction: column;
+  }
+
+  .section__padding {
+    padding: 0.75rem 0.75rem;
+  }
+
+  .custom__button {
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .custom__button {
+    font-size: 12px;
+  }
+
+  .section__padding {
+    padding: 0.25rem 0.75rem;
+  }
 }

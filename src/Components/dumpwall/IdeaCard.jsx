@@ -1,17 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./dumpwall.css";
+import "./IdeaCard.css";
 import { getDocs } from "firebase/firestore";
-import { ideaRef } from "../../firebase";
+import { ideaRef } from "../../firebase.js";
+import Section from "./Section";
 
-import vote from "../../../images/vote.svg";
-import comment from "../../../images/comment.svg";
-import share from "../../../images/share.svg";
-import upload from "../../../images/upload.svg"
+import images from "../../../assets/images.jsx";
 
-const IdeaCard = () => {
+const Ideacard = () => {
   const [ideaList, setIdeaList] = useState([]);
   const [listSize, setListSize] = useState(4);
-  const [listDisplayAction, setAction] = useState("View More");
+  const [listDisplayAction, setAction] = useState("Load More");
 
   // get collection data
   useEffect(() => {
@@ -31,55 +29,70 @@ const IdeaCard = () => {
   const ideaListSize = ideaList.length;
 
   const handleListSize = () => {
-    (listDisplayAction !== "View More") ? setListSize(4) : setListSize(listSize + 4);
+    listDisplayAction !== "Load More"
+      ? setListSize(4)
+      : setListSize(listSize + 4);
     if (listSize + 4 >= ideaListSize) {
-        setAction("View Less");
+      setAction("Load Less");
     }
     if (listSize >= ideaListSize) {
-        setAction("View More");
+      setAction("Load More");
     }
-  }
-
+  };
   return (
     <>
-      <section className="idea__card">
-        <h1 className="heading">Trending Ideas...</h1>
+      <section className="dumpwall__ideacard flex__center section__padding">
+        <div className="dumpwall__ideacard-heading">
+          <h1 className="dumpwall__ideacard-headtext">
+            Trending{" "}
+            <span>
+              Ideas
+              <img src={images.ideasTextUnderline} alt="Underline" />
+            </span>
+          </h1>
+        </div>
 
         {ideaList.slice(0, listSize).map((idea) => {
           return (
-            <div key={idea.id} className="card__container">
-              <div className="card__img__container">
-                <img src={upload} alt="" id="idea__img" />
+            <div
+              key={idea.id}
+              className="dumpwall__ideacard-container flex__center"
+            >
+              <div className="dumpwall__ideacard-container-img flex__center">
+                <img src="" alt="" />
               </div>
-              <div className="idea__description__container">
-                <h3 className="idea__name">{idea.name}</h3>
-                <p className="idea__description">{idea.description}</p>
-                <span className="links__container">
-                  <p className="comment__share__link">
-                    <img src={comment} alt="" className="comment__share__img" />
-                    comment
-                  </p>
-                  <p className="comment__share__link">
-                    <img src={share} alt="" className="comment__share__img" />
-                    share
-                  </p>
-                </span>
+              <div className="dumpwall__ideacard-container-content">
+                <p className="p__bold">{idea.name}</p>
+                <p className="p__normal">{idea.description}</p>
               </div>
-              <div className="vote__container">
-                <img title="Upvote this idea" src={vote} alt="" id="vote__img" />
-                {/* <p className="vote__count">
-              {upVote}
-            </p> */}
-              </div>
+              <img
+                src={images.shareIcon}
+                alt="Share"
+                className="dumpwall__ideacard-container-share"
+              />
+              <img
+                src={images.upvoteIcon}
+                alt="Upvote"
+                className="dumpwall__ideacard-container-upvote"
+              />
             </div>
           );
         })}
-        <div className={(ideaListSize > 4) ? "viewmore" : "hide"}>
-                <button className="viewmore__button" onClick={handleListSize}>{listDisplayAction}</button>
+        <button
+          type="button"
+          className={
+            ideaListSize > 4 ? "view custom__button" : "hide custom__button"
+          }
+          onClick={handleListSize}
+        >
+          {listDisplayAction}
+        </button>
+        <div className="dumpwall__section-container flex__center">
+          <Section />
         </div>
       </section>
     </>
   );
 };
 
-export default IdeaCard;
+export default Ideacard;
