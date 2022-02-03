@@ -7,7 +7,7 @@ import DumpForm from "./Pages/DumpForm";
 const App = () => {
   return (
     <>
-      <div className="App">
+      <div className="body__bg">
         <Routes>
           <Route path="/submitIdea" element={<DumpForm />} />
           <Route path="/" element={<DumpWall />} />

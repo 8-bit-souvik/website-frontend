@@ -1,82 +1,51 @@
 import React, { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
-import DumpForm from "../../Pages/DumpForm";
-import "./dumpwall.css";
-
-import logo from "../../../images/logo.svg";
+import "./Navbar.css";
 
 const Navbar = () => {
-  const [burgerStatus, setBurgerStatus] = useState("close");
+  const [burgerStatus, setBurgerStatus] = useState(false);
   return (
     <>
-      <nav className="nav__bar">
-        <div className="navigation">
-          <span className="logo">
-            <img
-              src={logo}
-              title="Dezenix"
-              alt="Dezenix logo"
-              className="logo__img"
-            />
-          </span>
-          <div className="navbar__buttons">
-            <Link to="/"><button className="navigation__buttons">home</button></Link>
-            <button className="navigation__buttons">about us</button>
-            <Link to="/submitIdea">
-              <button id="submit__idea" className="navigation__buttons">submit idea</button>
-            </Link>
-          </div>
-        </div>
-        <div className="mobile__navigation">
+      <div className="dumpwall__navbar flex__center section__padding">
+        <div className="dumpwall__navbar-smallScreen">
           <div
+            className="dumpwall__navbar-smallScreen-hamburgerIcon"
             role="button"
-            onClick={() =>
-              setBurgerStatus(burgerStatus === "open" ? "close" : "open")
-            }
-            className="hamburger__menu"
+            onClick={() => setBurgerStatus(!burgerStatus)}
           >
-            <i className={burgerStatus}></i>
-            <i className={burgerStatus}></i>
-            <i className={burgerStatus}></i>
+            <i className={burgerStatus ? "open" : "close"}></i>
+            <i className={burgerStatus ? "open" : "close"}></i>
+            <i className={burgerStatus ? "open" : "close"}></i>
           </div>
-          <span className="logo">
-            <img
-              src={logo}
-              title="Dezenix"
-              alt="Dezenix logo"
-              className="logo__img"
-            />
-          </span>
-          <Link to="/submitIdea">
-            <button id="submit__idea" className="navigation__buttons">submit idea</button>
-          </Link>
         </div>
-      </nav>
-      <div id={burgerStatus}>
-        <Link to="/">
-          <button
-            id="burger__buttons"
-            className="navigation__buttons"
-            onClick={() =>
-              setBurgerStatus(burgerStatus === "open" ? "close" : "open")
-            }
-          >
-            home
-          </button>
-        </Link>
-        <button
-          id="burger__buttons"
-          className="navigation__buttons"
-          onClick={() =>
-            setBurgerStatus(burgerStatus === "open" ? "close" : "open")
-          }
-        >
-          about us
-        </button>
+        <h1 className="dumpwall__navbar-logoName">dezenix</h1>
+        <ul className="dumpwall__navbar-menu">
+          <li className="p__normal">home</li>
+          <li className="p__normal">about us</li>
+        </ul>
+        <div className="dumpwall__navbar-submitButton">
+          <button className="custom__button">submit idea</button>
+        </div>
       </div>
-      <Routes>
-          <Route path="/submitIdea" element={<DumpForm />} />
-      </Routes>
+      <div className="dumpwall__navbar-smallScreen">
+        {burgerStatus && (
+          <div className="dumpwall_navbar-smallScreen-overlay slide_right">
+            <ul className="dumpwall__navbar-smallScreen-menu">
+              <li
+                className="p__normal"
+                onClick={() => setBurgerStatus(!burgerStatus)}
+              >
+                home
+              </li>
+              <li
+                className="p__normal"
+                onClick={() => setBurgerStatus(!burgerStatus)}
+              >
+                about us
+              </li>
+            </ul>
+          </div>
+        )}
+      </div>
     </>
   );
 };
