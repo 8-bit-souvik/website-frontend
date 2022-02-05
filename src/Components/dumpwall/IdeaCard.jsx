@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./IdeaCard.css";
 import { getDocs } from "firebase/firestore";
 import { ideaRef } from "../../firebase.js";
@@ -19,7 +19,9 @@ const Ideacard = () => {
         snapshot.docs.forEach((doc) => {
           idea.push({ ...doc.data(), id: doc.id });
         });
-        setIdeaList(idea);
+
+        let uniqueIdea = [...new Set(idea)]; // remove duplicate elements
+        setIdeaList(uniqueIdea);
       })
       .catch((err) => {
         console.log(err.message);
@@ -39,15 +41,16 @@ const Ideacard = () => {
       setAction("Load More");
     }
   };
+
   return (
     <>
-      <section className="dumpwall__ideacard flex__center section__padding">
-        <div className="dumpwall__ideacard-heading">
-          <h1 className="dumpwall__ideacard-headtext">
+      <section className='dumpwall__ideacard flex__center section__padding'>
+        <div className='dumpwall__ideacard-heading'>
+          <h1 className='dumpwall__ideacard-headtext'>
             Trending{" "}
             <span>
               Ideas
-              <img src={images.ideasTextUnderline} alt="Underline" />
+              <img src={images.ideasTextUnderline} alt='Underline' />
             </span>
           </h1>
         </div>
@@ -56,30 +59,30 @@ const Ideacard = () => {
           return (
             <div
               key={idea.id}
-              className="dumpwall__ideacard-container flex__center"
+              className='dumpwall__ideacard-container flex__center'
             >
-              <div className="dumpwall__ideacard-container-img flex__center">
-                <img src="" alt="" />
+              <div className='dumpwall__ideacard-container-img flex__center'>
+                <img src='' alt='' />
               </div>
-              <div className="dumpwall__ideacard-container-content">
-                <p className="p__bold">{idea.name}</p>
-                <p className="p__normal">{idea.description}</p>
+              <div className='dumpwall__ideacard-container-content'>
+                <p className='p__bold'>{idea.name}</p>
+                <p className='p__normal'>{idea.description}</p>
               </div>
               <img
                 src={images.shareIcon}
-                alt="Share"
-                className="dumpwall__ideacard-container-share"
+                alt='Share'
+                className='dumpwall__ideacard-container-share'
               />
               <img
                 src={images.upvoteIcon}
-                alt="Upvote"
-                className="dumpwall__ideacard-container-upvote"
+                alt='Upvote'
+                className='dumpwall__ideacard-container-upvote'
               />
             </div>
           );
         })}
         <button
-          type="button"
+          type='button'
           className={
             ideaListSize > 4 ? "view custom__button" : "hide custom__button"
           }
@@ -87,7 +90,7 @@ const Ideacard = () => {
         >
           {listDisplayAction}
         </button>
-        <div className="dumpwall__section-container flex__center">
+        <div className='dumpwall__section-container flex__center'>
           <Section />
         </div>
       </section>
