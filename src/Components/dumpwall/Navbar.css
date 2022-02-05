@@ -5,8 +5,9 @@
 }
 
 .dumpwall__navbar-logoName {
-    font-weight: 500;
+    font-weight: 700;
     font-size: 25px;
+    letter-spacing: 0.05rem;
 }
 
 .dumpwall__navbar-menu {
@@ -27,7 +28,7 @@
 .dumpwall__navbar-menu li::after {
     display: block;
     content: "";
-    border-bottom: 2px solid var(--color-theme-green);
+    border-bottom: 1px solid var(--color-theme-green);
     transform: scaleX(0);
     transition: transform 250ms ease-in-out;
 }
@@ -52,100 +53,36 @@
     color: var(--color-theme-blue);
 }
 
-.dumpwall__navbar-smallScreen {
-    background-color: transparent;
-    display: none;
-}
-
-.dumpwall__navbar-smallScreen-hamburgerIcon {
-    background-color: inherit;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    cursor: pointer;
-}
-
-.dumpwall__navbar-smallScreen-hamburgerIcon i {
-    background-color: var(--color-white);
-    width: 27.5px;
-    height: 4px;
-    margin: 1.5px 0;
-    border-radius: 2px;
-    transition: all ease 0.5s;
-}
-
-.open:nth-child(1) {
-    transform: rotate(45deg) translateY(10px);
-}
-.open:nth-child(2) {
-    opacity: 0;
-}
-
-.open:nth-child(3) {
-    transform: rotate(-45deg) translateY(-10px);
-}
-
-.close:nth-child(1) {
-    transform: rotate(0) translateY(0);
-}
-
-.close:nth-child(2) {
-    opacity: 1;
-}
-
-.close:nth-child(3) {
-    transform: rotate(0) translateY(0);
-}
-
-.dumpwall__navbar-smallScreen-overlay {
-    width: 10rem;
-    min-height: 100vh;
-    background-color: var(--color-theme-blue);
-    position: fixed;
-    z-index: 5;
-}
-
-.dumpwall__navbar-smallScreen-menu {
-    width: 100%;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    list-style-type: none;
-    text-transform: uppercase;
-    color: var(--color-white);
-}
-
-.dumpwall__navbar-smallScreen-menu li {
-    margin-bottom: 0.5rem;
-}
-
-@media screen and (max-width: 900px) {
-    .dumpwall__navbar-menu {
-        display: none;
-    }
-
-    .dumpwall__navbar-smallScreen {
-        display: block;
+@media screen and (min-width: 2000px) {
+    .dumpwall__navbar {
+        padding: 1.25rem 15vw;
     }
 
     .dumpwall__navbar-logoName {
-        width: 100%;
-        text-align: center;
+        font-size: 40px;
     }
 
-    .dumpwall__navbar-submitButton {
-        width: 100%;
-    }
-
-    .dumpwall__navbar-smallScreen {
-        width: 100%;
+    .dumpwall__navbar-menu li {
+        margin-right: 4vw;
     }
 }
 
 @media screen and (max-width: 650px) {
+    .dumpwall__navbar {
+        padding: 0.75rem;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .dumpwall__navbar-submitButton {
+        display: none;
+    }
+
+    .dumpwall__navbar-menu li {
+        margin-right: 0;
+        margin-left: 4vw;
+    }
     .dumpwall__navbar-logoName {
-        font-size: 25px;
+        font-size: 20px;
     }
 }

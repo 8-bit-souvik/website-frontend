@@ -14,6 +14,14 @@
 
 .dumpwall__section-leftContainer p:nth-of-type(1) {
   margin-bottom: 1rem;
+  font-size: 16px;
+  color: var(--color-theme-green);
+  font-weight: 200;
+}
+
+.dumpwall__section-leftContainer p:nth-of-type(2) {
+  font-size: 20px;
+  color: var(--color-white);
 }
 
 .dumpwall__section-mailLink {
@@ -35,42 +43,46 @@
   transition: all 0.1s;
 }
 
-/* #first__part {
-  color: #80ed99;
-}
-#second__part {
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-.email__link {
-  width: 100%;
+@media screen and (min-width: 2000px) {
+  .dumpwall__section-leftContainer p:nth-of-type(1) {
+    font-size: 22px;
+    margin-bottom: 2rem;
+  }
 
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #80ed99;
+  .dumpwall__section-leftContainer p:nth-of-type(2) {
+    font-size: 28px;
+  }
 }
 
-#email__link__icon {
-  height: 0.75rem;
-  width: 0.75rem;
-  padding-left: 0.5em;
-  object-fit: cover;
+@media screen and (max-width: 1000px) {
+  .dumpwall__section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dumpwall__section-leftContainer p:nth-of-type(1) {
+    margin-bottom: 0;
+  }
+
+  .dumpwall__section-leftContainer p:nth-of-type(2) {
+    margin: 1.5rem 0;
+  }
 }
 
-.email__link:hover .email {
-  color: #80ed99;
-}
+@media screen and (max-width: 450px) {
+  .dumpwall__section {
+    padding: 10px;
+  }
 
-.email__link:hover #email__link__icon {
-  transform: scale(1.5);
-  transition: all 0.2s;
-}
+  .dumpwall__section-leftContainer p:nth-of-type(1) {
+    font-size: 12px;
+  }
 
-.email {
-  width: 100%;
-  font-size: 1.2rem;
-  font-weight: 400;
-  color: #80ed99;
-} */
+  .dumpwall__section-leftContainer p:nth-of-type(2) {
+    font-size: 14px;
+  }
+
+  .dumpwall__section-mailLink img {
+    width: 10px;
+  }
+}

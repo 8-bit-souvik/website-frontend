@@ -54,10 +54,15 @@
   .p__bold {
     font-size: 25px;
   }
+
+  .custom__button {
+    font-size: 20px;
+    padding: 0.75rem 2.5rem;
+  }
 }
 
 @media screen and (max-width: 900px) {
-  .flex__row__justify {
+  /* .flex__row__justify {
     flex-direction: column;
   }
 
@@ -67,15 +72,41 @@
 
   .custom__button {
     padding: 0.25rem 0.5rem;
+  } */
+}
+
+@media screen and (min-width: 2000px) {
+  .p__bold {
+    font-size: 28px;
   }
 }
 
 @media screen and (max-width: 650px) {
-  .custom__button {
-    font-size: 12px;
+  .section__padding {
+    padding: 0.5rem 0.75rem;
   }
 
+  .p__normal {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 650px) {
   .section__padding {
-    padding: 0.25rem 0.75rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .p__normal {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .p__normal {
+    font-size: 10px;
+  }
+
+  .p__bold {
+    font-size: 14px;
   }
 }

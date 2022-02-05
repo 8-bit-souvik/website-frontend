@@ -7,13 +7,10 @@ const Section = () => {
     <>
       <div className="dumpwall__section flex__justify">
         <div className="dumpwall__section-leftContainer">
-          <p
-            style={{ fontSize: "16px", color: "#80ED99", fontWeight: "200" }}
-            className="p__normal"
-          >
+          <p className="p__normal">
             Lets get in touch on a virtual coffee date! Juss Kidding!
           </p>
-          <p style={{ fontSize: "20px", color: "white" }} className="p__bold">
+          <p className="p__bold">
             Have some suggestions for our community?
             <br />
             Or just want to have a casual chat?
