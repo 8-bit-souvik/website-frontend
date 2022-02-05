@@ -5,7 +5,7 @@ import IdeaCard from "../Components/dumpwall/IdeaCard";
 import Footer from "../Components/dumpwall/Footer";
 
 const Dumpwall = () => (
-  <div>
+  <div className="body__bg">
     <Navbar />
     <Hero />
     <IdeaCard />

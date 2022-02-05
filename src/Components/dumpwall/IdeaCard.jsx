@@ -56,27 +56,38 @@ const Ideacard = () => {
 
         {ideaList.slice(0, listSize).map((idea) => {
           return (
-            <div
-              key={idea.id}
-              className='dumpwall__ideacard-container flex__center'
-            >
+            <div key={idea.id} className='dumpwall__ideacard-container'>
               <div className='dumpwall__ideacard-container-img flex__center'>
                 <img src='' alt='' />
               </div>
               <div className='dumpwall__ideacard-container-content'>
                 <p className='p__bold'>{idea.name}</p>
-                <p className='p__normal'>{idea.description}</p>
+                <p style={{ color: "#97BED6" }} className='p__normal'>
+                  {idea.description}
+                </p>
+                <p style={{ color: "#97BED6" }} className='p__normal'>
+                  Submitted on : 12 January 2022
+                </p>
               </div>
-              <img
-                src={images.shareIcon}
-                alt='Share'
-                className='dumpwall__ideacard-container-share'
-              />
-              <img
-                src={images.upvoteIcon}
-                alt='Upvote'
-                className='dumpwall__ideacard-container-upvote'
-              />
+              <div className='dumpwall__ideacrad-container-icons flex__justify'>
+                <div className='dumpwall__ideacrad-container-icons-share flex__center'>
+                  <img
+                    src={images.shareIcon}
+                    alt='Share'
+                    className='dumpwall__ideacard-container-share'
+                  />
+                  <p className='p__normal'>Share</p>
+                </div>
+                <div className='dumpwall__ideacrad-container-icons-upvote flex__center'>
+                  <img
+                    src={images.upvoteIcon}
+                    alt='Upvote'
+                    className='dumpwall__ideacard-container-upvote'
+                  />
+                  <p className='p__normal'>Upvote</p>
+                  <p className='p__normal'>{idea.votes}</p>
+                </div>
+              </div>
             </div>
           );
         })}

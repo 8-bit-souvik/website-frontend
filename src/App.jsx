@@ -8,7 +8,7 @@ import Share from "./Components/dumpwall/Share";
 const App = () => {
   return (
     <>
-      <div className="body__bg">
+      <div>
         <Routes>
           <Route path="/submitIdea" element={<DumpForm />} />
           <Route path="/share" element={<Share />} />
