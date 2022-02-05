@@ -3,7 +3,6 @@ import "./IdeaCard.css";
 import { getDocs } from "firebase/firestore";
 import { ideaRef } from "../../firebase.js";
 import Section from "./Section";
-
 import images from "../../../assets/images.jsx";
 
 const Ideacard = () => {
