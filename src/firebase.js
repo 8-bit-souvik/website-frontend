@@ -6,7 +6,7 @@ import firebaseConfig from './firebase_config.json'
 initializeApp(firebaseConfig);
 
 // init services
-const db = getFirestore();
+export const db = getFirestore();
 
 // collection ref
 export const ideaRef = collection(db, "ideas");
