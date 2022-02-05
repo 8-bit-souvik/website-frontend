@@ -5,11 +5,32 @@ import { ideaRef, db } from "../../firebase.js";
 import Section from "./Section";
 import images from "../../../assets/images.jsx";
 
+// check whether list of ideas has been stored in LS
+const getLocalIdeas = () => {
+  let list = localStorage.getItem("ideas");
+  if (list) {
+    return JSON.parse(localStorage.getItem("ideas"));
+  } else {
+    return [];
+  }
+};
+
+// check whether bool list of votes has been stored in LS
+const getLocalVoteState = () => {
+  let list = localStorage.getItem("voted");
+  if (list) {
+    return JSON.parse(localStorage.getItem("voted"));
+  } else {
+    return false;
+  }
+};
+
 const Ideacard = () => {
   const [listDisplayAction, setAction] = useState("Load More");
   const [ideaList, setIdeaList] = useState([]);
   const [listSize, setListSize] = useState(4);
-  const [hasVoted, setHasVoted] = useState([]);
+  const [hasVoted, setHasVoted] = useState(getLocalIdeas());
+  const [insideLocalStorage, setInsideLocalStorage] = useState(getLocalVoteState());
 
   // get collection data
   useEffect(() => {
@@ -19,9 +40,17 @@ const Ideacard = () => {
         snapshot.docs.forEach((doc) => {
           idea.push({ ...doc.data(), id: doc.id });
         });
-
         let uniqueIdeas = [...new Set(idea)]; // remove duplicate elements
         setIdeaList(uniqueIdeas);
+
+        if (insideLocalStorage === false) {
+          const votesList = []; // create a list of ids -> votes
+          for (let i = 0; i < uniqueIdeas.length; i++) {
+            votesList.push({ id: uniqueIdeas[i].id, voteBool: false });
+          }
+          setHasVoted(votesList);
+          console.log("hey");
+        }
       })
       .catch((err) => {
         console.log(err.message);
@@ -45,6 +74,15 @@ const Ideacard = () => {
     let ideaToBeUpdated = doc(db, "ideas", id);
     let idea = ideaList.find((idea) => idea.id === id);
 
+    // update vote in hasVoted array
+    const newVotesList = hasVoted.map((element) => {
+      if (element.id === id) {
+        return { ...element, voteBool: true };
+      }
+      return element;
+    });
+    setHasVoted(newVotesList);
+
     updateDoc(ideaToBeUpdated, {
       votes: idea.votes + 1,
     }).then(() => {
@@ -58,6 +96,12 @@ const Ideacard = () => {
       setIdeaList(updatedIdeaList);
     });
   };
+
+  // add boolean list of votes & store-state in localStorage
+  useEffect(() => {
+    localStorage.setItem("ideas", JSON.stringify(hasVoted));
+    localStorage.setItem("voted", JSON.stringify(true));
+  }, [hasVoted]);
 
   return (
     <>
@@ -101,7 +145,14 @@ const Ideacard = () => {
                   </div>
                   <div
                     className='dumpwall__ideacrad-container-icons-upvote flex__center'
-                    onClick={() => upVote(idea.id)}
+                    onClick={() => {
+                      if (
+                        hasVoted.find((item) => item.id === idea.id)
+                          .voteBool === false
+                      ) {
+                        upVote(idea.id);
+                      }
+                    }}
                   >
                     <img
                       src={images.upvoteIcon}
