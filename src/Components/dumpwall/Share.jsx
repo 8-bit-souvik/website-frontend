@@ -13,12 +13,15 @@ import {
   TwitterIcon,
   WhatsappIcon,
 } from "react-share";
-import moment from "moment";
 
 const Share = ({ name, description }) => {
   const data = {
     title:
-      moment().format("DD MMMM YYYY") +
+      new Date(Date.now()).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }) +
       "\n\n" +
       "Idea name: " +
       name +
@@ -31,7 +34,7 @@ const Share = ({ name, description }) => {
 
   return (
     <>
-      <div className='social__media'>
+      <div className="social__media">
         <WhatsappShareButton url={data.url} title={data.title}>
           <WhatsappIcon size={32} round={true} />
         </WhatsappShareButton>

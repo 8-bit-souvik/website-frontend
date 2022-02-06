@@ -1,88 +1,92 @@
 .dumpwall__navbar {
-    background-image: linear-gradient(to right, rgba(5, 42, 66, 0.55) 0, rgba(5, 42, 66, 1) 40%);
-    color: var(--color-white);
-    padding: 0.75rem 15vw;
+  background-image: linear-gradient(
+    to right,
+    rgba(5, 42, 66, 0.55) 0,
+    rgba(5, 42, 66, 1) 40%
+  );
+  color: var(--color-white);
+  padding: 0.75rem 15vw;
 }
 
 .dumpwall__navbar-logoName {
-    font-weight: 700;
-    font-size: 25px;
-    letter-spacing: 0.05rem;
+  font-weight: 700;
+  font-size: 25px;
+  letter-spacing: 0.05rem;
 }
 
 .dumpwall__navbar-menu {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    overflow: auto;
-    list-style-type: none;
-    text-transform: uppercase;
-    cursor: pointer;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: auto;
+  list-style-type: none;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
 .dumpwall__navbar-menu li {
-    margin-right: 3vw;
+  margin-right: 3vw;
 }
 
 .dumpwall__navbar-menu li::after {
-    display: block;
-    content: "";
-    border-bottom: 1px solid var(--color-theme-green);
-    transform: scaleX(0);
-    transition: transform 250ms ease-in-out;
+  display: block;
+  content: "";
+  border-bottom: 1px solid var(--color-theme-green);
+  transform: scaleX(0);
+  transition: transform 250ms ease-in-out;
 }
 
 .dumpwall__navbar-menu li:hover::after {
-    transform: none;
+  transform: none;
 }
 
 .dumpwall__navbar-submitButton {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .dumpwall__navbar-submitButton button {
-    text-transform: uppercase;
-    border: 1px solid var(--color-theme-green);
+  text-transform: uppercase;
+  border: 1px solid var(--color-theme-green);
 }
 
 .dumpwall__navbar-submitButton button:hover {
-    background-color: var(--color-theme-green);
-    color: var(--color-theme-blue);
+  background-color: var(--color-theme-green);
+  color: var(--color-theme-blue);
 }
 
 @media screen and (min-width: 2000px) {
-    .dumpwall__navbar {
-        padding: 1.25rem 15vw;
-    }
+  .dumpwall__navbar {
+    padding: 1.25rem 15vw;
+  }
 
-    .dumpwall__navbar-logoName {
-        font-size: 40px;
-    }
+  .dumpwall__navbar-logoName {
+    font-size: 40px;
+  }
 
-    .dumpwall__navbar-menu li {
-        margin-right: 4vw;
-    }
+  .dumpwall__navbar-menu li {
+    margin-right: 4vw;
+  }
 }
 
 @media screen and (max-width: 650px) {
-    .dumpwall__navbar {
-        padding: 0.75rem;
-    }
+  .dumpwall__navbar {
+    padding: 0.75rem;
+  }
 }
 
 @media screen and (max-width: 450px) {
-    .dumpwall__navbar-submitButton {
-        display: none;
-    }
+  .dumpwall__navbar-submitButton {
+    display: none;
+  }
 
-    .dumpwall__navbar-menu li {
-        margin-right: 0;
-        margin-left: 4vw;
-    }
-    .dumpwall__navbar-logoName {
-        font-size: 20px;
-    }
+  .dumpwall__navbar-menu li {
+    margin-right: 0;
+    margin-left: 4vw;
+  }
+  .dumpwall__navbar-logoName {
+    font-size: 20px;
+  }
 }
