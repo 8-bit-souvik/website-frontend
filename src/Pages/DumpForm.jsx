@@ -11,6 +11,7 @@ const DumpForm = () => {
     name: "",
     email: "",
     description: "",
+    imageURL: "",
   });
 
   const handleChange = (e) => {
@@ -23,7 +24,7 @@ const DumpForm = () => {
 
   const submitIdea = (e) => {
     e.preventDefault();
-    const { name, email, description } = formData;
+    const { name, email, description, imageURL } = formData;
 
     if (name && email && description) {
       addDoc(ideaRef, {
@@ -32,6 +33,7 @@ const DumpForm = () => {
         description: description,
         votes: 0,
         date: moment().format("DD MMMM YYYY"),
+        imageURL: imageURL ? imageURL : "",
       }).then(() => {
         setformData({ name: "", email: "", description: "" });
         alert("Idea Submitted");
@@ -93,7 +95,7 @@ const DumpForm = () => {
             required
             autoComplete='off'
           />
-          <label htmlFor='dropzone' className='input__lables'>
+          {/* <label htmlFor='dropzone' className='input__lables'>
             Please share Graphical Description (If any)
           </label>
           <div
@@ -101,7 +103,20 @@ const DumpForm = () => {
             title='Drop Your Graphical Description Here'
           >
             <img src={""} alt='' className='upload__img' />
-          </div>
+          </div> */}
+          <label htmlFor='imageURL' className='input__lables'>
+            Please share any Relavent Link ( Figma, etc )
+            <span className='asteriks'>*</span>
+          </label>
+          <input
+            className='input__field'
+            type='URL'
+            id='imageURL'
+            name='imageURL'
+            value={formData.imageURL}
+            onChange={handleChange}
+            autoComplete='off'
+          />
           <button
             title='Click to Submit Your Idea'
             id='submit__button'

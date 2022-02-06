@@ -4,6 +4,7 @@ import { getDocs, doc, updateDoc } from "firebase/firestore";
 import { ideaRef, db } from "../../firebase.js";
 import Section from "./Section";
 import images from "../../../assets/images.jsx";
+import Share from "./Share";
 
 // check whether list of ideas has been stored in LS
 const getLocalIdeas = () => {
@@ -142,6 +143,7 @@ const Ideacard = () => {
                     />
                     <p className='p__normal'>Share</p>
                   </div>
+                  {/* <Share name={idea.name} description={idea.description} /> */}
                   <div
                     className='dumpwall__ideacrad-container-icons-upvote flex__center'
                     onClick={() => {
