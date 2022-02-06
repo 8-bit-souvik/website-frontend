@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './Dumpform.css';
+import './DumpForm.css';
 import { addDoc, serverTimestamp } from 'firebase/firestore';
 import { ideaRef } from '../firebase';
 import moment from 'moment';
+import { storage } from '../firebase';
+import { ref as storageRef, uploadBytes } from 'firebase/storage';
+
+let fileToBeUploaded;
 
 const DumpForm = () => {
   const navigate = useNavigate();
@@ -22,12 +26,12 @@ const DumpForm = () => {
     console.log(moment().format('DD MMMM YYYY'));
   };
 
-  const submitIdea = (e) => {
+  const submitIdea = async (e) => {
     e.preventDefault();
     const { name, email, description, imageURL } = formData;
 
     if (name && email && description) {
-      addDoc(ideaRef, {
+      const newRef = await addDoc(ideaRef, {
         name: name,
         email: email,
         description: description,
@@ -35,12 +39,25 @@ const DumpForm = () => {
         date: moment().format('DD MMMM YYYY'),
         imageURL: imageURL ? imageURL : '',
         timestamp: serverTimestamp(),
-      }).then(() => {
-        setformData({ name: '', email: '', description: '' });
-        alert('Idea Submitted');
-        navigate('/');
       });
+
+      const newID = newRef.id;
+
+      const fileRef = storageRef(storage, `ideaForm/${newID}/desc-1-${fileToBeUploaded.name}`);
+
+      const result = await uploadBytes(fileRef, fileToBeUploaded);
+
+      setformData({ name: '', email: '', description: '' });
+      alert('Idea Submitted');
+      navigate('/');
     }
+  };
+
+  const onImageDropped = (event, id) => {
+    event.preventDefault();
+    fileToBeUploaded = event.dataTransfer.files[0];
+
+    console.log(fileToBeUploaded);
   };
 
   return (
@@ -98,7 +115,16 @@ const DumpForm = () => {
           <label htmlFor="dropzone" className="input__lables">
             Please share Graphical Description (If any)
           </label>
-          <div className="input__field drop__zone" title="Drop Your Graphical Description Here">
+          <div
+            draggable
+            onDragOver={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+            onDrop={(event) => onImageDropped(event)}
+            className="input__field drop__zone"
+            title="Drop Your Graphical Description Here"
+          >
             <img src={''} alt="" className="upload__img" />
           </div>
           <label htmlFor="imageURL" className="input__lables">
