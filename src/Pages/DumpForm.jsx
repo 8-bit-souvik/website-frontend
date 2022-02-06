@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Dumpform.css";
-import { addDoc } from "firebase/firestore";
+import { addDoc, serverTimestamp } from "firebase/firestore";
 import { ideaRef } from "../firebase";
 import moment from "moment";
 
@@ -34,6 +34,7 @@ const DumpForm = () => {
         votes: 0,
         date: moment().format("DD MMMM YYYY"),
         imageURL: imageURL ? imageURL : "",
+        timestamp: serverTimestamp(),
       }).then(() => {
         setformData({ name: "", email: "", description: "" });
         alert("Idea Submitted");
