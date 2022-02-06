@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./IdeaCard.css";
-import { getDocs, onSnapshot, doc, updateDoc } from "firebase/firestore";
+import { getDocs, doc, updateDoc } from "firebase/firestore";
 import { ideaRef, db } from "../../firebase.js";
 import Section from "./Section";
 import images from "../../../assets/images.jsx";
@@ -30,7 +30,7 @@ const Ideacard = () => {
   const [ideaList, setIdeaList] = useState([]);
   const [listSize, setListSize] = useState(4);
   const [hasVoted, setHasVoted] = useState(getLocalIdeas());
-  const [insideLocalStorage, setInsideLocalStorage] = useState(getLocalVoteState());
+  const insideLocalStorage = getLocalVoteState();
 
   // get collection data
   useEffect(() => {
@@ -49,7 +49,6 @@ const Ideacard = () => {
             votesList.push({ id: uniqueIdeas[i].id, voteBool: false });
           }
           setHasVoted(votesList);
-          console.log("hey");
         }
       })
       .catch((err) => {
@@ -74,7 +73,7 @@ const Ideacard = () => {
     let ideaToBeUpdated = doc(db, "ideas", id);
     let idea = ideaList.find((idea) => idea.id === id);
 
-    // update vote in hasVoted array
+    // update vote in hasVoted array, if not the user can vote multiple times
     const newVotesList = hasVoted.map((element) => {
       if (element.id === id) {
         return { ...element, voteBool: true };
@@ -131,7 +130,7 @@ const Ideacard = () => {
                     {idea.description}
                   </p>
                   <p style={{ color: "#97BED6" }} className='p__normal'>
-                    Submitted on : 12 January 2022
+                    Submitted on: {idea.date}
                   </p>
                 </div>
                 <div className='dumpwall__ideacrad-container-icons flex__justify'>

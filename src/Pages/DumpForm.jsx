@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Dumpform.css";
 import { addDoc } from "firebase/firestore";
 import { ideaRef } from "../firebase";
+import moment from "moment";
 
 const DumpForm = () => {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ const DumpForm = () => {
       ...prevState,
       [e.target.name]: e.target.value,
     }));
+    console.log(moment().format("DD MMMM YYYY"));
   };
 
   const submitIdea = (e) => {
@@ -28,6 +30,8 @@ const DumpForm = () => {
         name: name,
         email: email,
         description: description,
+        votes: 0,
+        date: moment().format("DD MMMM YYYY"),
       }).then(() => {
         setformData({ name: "", email: "", description: "" });
         alert("Idea Submitted");
@@ -45,8 +49,8 @@ const DumpForm = () => {
         <div className='form__heading'>
           <h1 id='greeting__msg'>Hi There &#128075;</h1>
           <p id='form__msg'>
-            Feel free to share your ideas and community will help you to turn it
-            into a product.
+            Feel free to share your ideas and the community will help you to
+            turn it into a product.
           </p>
         </div>
         <form className='form__container'>
