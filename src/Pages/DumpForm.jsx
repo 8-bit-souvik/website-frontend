@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './DumpForm.css';
-import { addDoc, serverTimestamp } from 'firebase/firestore';
+import { addDoc } from 'firebase/firestore';
 import { ideaRef } from '../firebase';
-import moment from 'moment';
 import { storage } from '../firebase';
 import { ref as storageRef, uploadBytes } from 'firebase/storage';
 
@@ -35,16 +34,16 @@ const DumpForm = () => {
         email: email,
         description: description,
         votes: 0,
-        date: moment().format('DD MMMM YYYY'),
+        date: Date.now(),
         imageURL: imageURL ? imageURL : '',
-        timestamp: serverTimestamp(),
       });
 
       const newID = newRef.id;
 
-      const fileRef = storageRef(storage, `ideaForm/${newID}/desc-1-${fileToBeUploaded.name}`);
-
-      const result = await uploadBytes(fileRef, fileToBeUploaded);
+      if (fileToBeUploaded) {
+        const fileRef = storageRef(storage, `ideaForm/${newID}/desc-1-${fileToBeUploaded.name}`);
+        const result = await uploadBytes(fileRef, fileToBeUploaded);
+      }
 
       setformData({ name: '', email: '', description: '' });
       alert('Idea Submitted');

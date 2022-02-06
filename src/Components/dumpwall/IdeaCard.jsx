@@ -1,18 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './IdeaCard.css';
-import {
-  getDocs,
-  doc,
-  updateDoc,
-  collection,
-  orderBy,
-  query,
-  onSnapshot,
-} from 'firebase/firestore';
+import { getDocs, doc, updateDoc } from 'firebase/firestore';
 import { ideaRef, db } from '../../firebase.js';
 import Section from './Section';
 import images from '../../../assets/images.jsx';
-import Share from './Share';
 
 const LOAD_MORE_SIZE = 4;
 const LOAD_MORE_ACTION = 'Load More';
@@ -112,7 +103,12 @@ const Ideacard = () => {
                     {idea.description}
                   </p>
                   <p style={{ color: '#97BED6' }} className="p__normal">
-                    Submitted on: {idea.date}
+                    Submitted on:{' '}
+                    {new Date(idea.date).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
                   </p>
                 </div>
                 <div className="dumpwall__ideacrad-container-icons flex__justify">
