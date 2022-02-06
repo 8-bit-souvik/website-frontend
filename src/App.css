@@ -1,6 +1,7 @@
 .body__bg {
   min-height: 100vh;
-  background-image: radial-gradient(circle at 0% 0%, #80ed99 0, #006ead 20%);
+  background-image: radial-gradient(circle at 0% 0%, #80ED99 0, #006EAD 20%, transparent 50%), radial-gradient(circle at 60% 22.5%, #80ED99 0, #006EAD 25%, transparent 50%), radial-gradient(circle at 0 50%, #80ED99 0, #006EAD 25%, transparent 50%), radial-gradient(circle at 100% 65%, #80ED99 0, #006EAD 25%, transparent 50%);
+  background-color: #006EAD;
 }
 
 .section__padding {
@@ -61,23 +62,19 @@
   }
 }
 
-@media screen and (max-width: 900px) {
-  /* .flex__row__justify {
-    flex-direction: column;
-  }
-
-  .section__padding {
-    padding: 0.75rem 0.75rem;
-  }
-
-  .custom__button {
-    padding: 0.25rem 0.5rem;
-  } */
-}
-
 @media screen and (min-width: 2000px) {
+  .body__bg {
+    background-image: radial-gradient(circle at 0% 0%, #80ED99 0, #006EAD 20%, transparent 50%), radial-gradient(circle at 70% 22.5%, #80ED99 0, #006EAD 25%, transparent 50%), radial-gradient(circle at 0 50%, #80ED99 0, #006EAD 25%, transparent 50%), radial-gradient(circle at 100% 65%, #80ED99 0, #006EAD 25%, transparent 50%);
+  }
+
   .p__bold {
     font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .body__bg {
+    background-image: radial-gradient(circle at 0% 0%, rgba(128, 237, 153, 0.6) 0, rgba(5, 42, 66, 0.8) 50%, transparent 100%), radial-gradient(circle at 0 50%, #80ED99 0, #006EAD 25%, transparent 50%), radial-gradient(circle at 100% 65%, #80ED99 0, #006EAD 25%, transparent 50%);
   }
 }
 

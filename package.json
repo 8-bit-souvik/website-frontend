@@ -7,8 +7,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "moment": "^2.29.1",
-    "react-dropzone": "^11.5.3",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "firebase": "^9.6.6",

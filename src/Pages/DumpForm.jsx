@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./DumpForm.css";
@@ -5,16 +6,32 @@ import { addDoc } from "firebase/firestore";
 import { ideaRef } from "../firebase";
 import { storage } from "../firebase";
 import { ref as storageRef, uploadBytes } from "firebase/storage";
+=======
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import './DumpForm.css';
+import { addDoc } from 'firebase/firestore';
+import { ideaRef } from '../firebase';
+import { storage } from '../firebase';
+import { ref as storageRef, uploadBytes } from 'firebase/storage';
+>>>>>>> 6f35f4e45571bede797e95b40c83f54689a68f84
 
 let fileToBeUploaded;
 
 const DumpForm = () => {
   const navigate = useNavigate();
   const [formData, setformData] = useState({
+<<<<<<< HEAD
     name: "",
     email: "",
     description: "",
     imageURL: "",
+=======
+    name: '',
+    email: '',
+    description: '',
+    imageURL: '',
+>>>>>>> 6f35f4e45571bede797e95b40c83f54689a68f84
   });
 
   const handleChange = (e) => {
