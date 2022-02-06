@@ -23,7 +23,6 @@ const DumpForm = () => {
       ...prevState,
       [e.target.name]: e.target.value,
     }));
-    console.log(moment().format('DD MMMM YYYY'));
   };
 
   const submitIdea = async (e) => {
