@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./IdeaCard.css";
-import { getDocs, doc, updateDoc } from "firebase/firestore";
+import {
+  getDocs,
+  doc,
+  updateDoc,
+  collection,
+  orderBy,
+  query,
+  onSnapshot,
+} from "firebase/firestore";
 import { ideaRef, db } from "../../firebase.js";
 import Section from "./Section";
 import images from "../../../assets/images.jsx";
@@ -26,12 +34,19 @@ const getLocalVoteState = () => {
   }
 };
 
+const ideaExists = (id, list) => {
+  return list.some((element) => {
+    return element.id === id;
+  });
+};
+
 const Ideacard = () => {
   const [listDisplayAction, setAction] = useState("Load More");
   const [ideaList, setIdeaList] = useState([]);
   const [listSize, setListSize] = useState(4);
   const [hasVoted, setHasVoted] = useState(getLocalIdeas());
   const insideLocalStorage = getLocalVoteState();
+  const [filterList, setFilterList] = useState([]);
 
   // get collection data
   useEffect(() => {
@@ -42,6 +57,7 @@ const Ideacard = () => {
           idea.push({ ...doc.data(), id: doc.id });
         });
         let uniqueIdeas = [...new Set(idea)]; // remove duplicate elements
+        uniqueIdeas?.sort((i1, i2) => (i1.votes > i2.votes ? -1 : 1)); // sort acc to votes
         setIdeaList(uniqueIdeas);
 
         if (insideLocalStorage === false) {
@@ -50,6 +66,22 @@ const Ideacard = () => {
             votesList.push({ id: uniqueIdeas[i].id, voteBool: false });
           }
           setHasVoted(votesList);
+        } else {
+          onSnapshot(
+            query(collection(db, "ideas"), orderBy("timestamp")),
+            (snapshot) => {
+              setFilterList(
+                snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+              );
+            }
+          );
+          let newIdea = filterList[filterList.length - 1];
+          newIdea = Object.create({ id: newIdea.id, voteBool: false });
+
+          if (!ideaExists(newIdea.id, hasVoted)) {
+            setHasVoted((prev) => [...prev, newIdea]);
+            console.log(hasVoted);
+          }
         }
       })
       .catch((err) => {
@@ -99,8 +131,18 @@ const Ideacard = () => {
 
   // add boolean list of votes & store-state in localStorage
   useEffect(() => {
+    var votesList = hasVoted.slice();
+    // if (votesList.length < ideaList.length) {
+    //   for (let i = 0; i < ideaList.length; i++) {
+    //     if (ideaList[i].id !== votesList[i].id) {
+    //       votesList.push({ id: ideaList[i].id, voteBool: false });
+    //     }
+    //   }
+    // }
+
     localStorage.setItem("ideas", JSON.stringify(hasVoted));
     localStorage.setItem("voted", JSON.stringify(true));
+    // console.log(votesList.length < ideaList.length);
   }, [hasVoted]);
 
   return (
@@ -116,57 +158,54 @@ const Ideacard = () => {
           </h1>
         </div>
 
-        {ideaList
-          ?.sort((i1, i2) => (i1.votes > i2.votes ? -1 : 1))
-          .slice(0, listSize)
-          .map((idea) => {
-            return (
-              <div key={idea.id} className='dumpwall__ideacard-container'>
-                <div className='dumpwall__ideacard-container-img flex__center'>
-                  <img src='' alt='' />
+        {ideaList.slice(0, listSize).map((idea) => {
+          return (
+            <div key={idea.id} className='dumpwall__ideacard-container'>
+              <div className='dumpwall__ideacard-container-img flex__center'>
+                <img src='' alt='' />
+              </div>
+              <div className='dumpwall__ideacard-container-content'>
+                <p className='p__bold'>{idea.name}</p>
+                <p style={{ color: "#97BED6" }} className='p__normal'>
+                  {idea.description}
+                </p>
+                <p style={{ color: "#97BED6" }} className='p__normal'>
+                  Submitted on: {idea.date}
+                </p>
+              </div>
+              <div className='dumpwall__ideacrad-container-icons flex__justify'>
+                <div className='dumpwall__ideacrad-container-icons-share flex__center'>
+                  <img
+                    src={images.shareIcon}
+                    alt='Share'
+                    className='dumpwall__ideacard-container-share'
+                  />
+                  <p className='p__normal'>Share</p>
                 </div>
-                <div className='dumpwall__ideacard-container-content'>
-                  <p className='p__bold'>{idea.name}</p>
-                  <p style={{ color: "#97BED6" }} className='p__normal'>
-                    {idea.description}
-                  </p>
-                  <p style={{ color: "#97BED6" }} className='p__normal'>
-                    Submitted on: {idea.date}
-                  </p>
-                </div>
-                <div className='dumpwall__ideacrad-container-icons flex__justify'>
-                  <div className='dumpwall__ideacrad-container-icons-share flex__center'>
-                    <img
-                      src={images.shareIcon}
-                      alt='Share'
-                      className='dumpwall__ideacard-container-share'
-                    />
-                    <p className='p__normal'>Share</p>
-                  </div>
-                  {/* <Share name={idea.name} description={idea.description} /> */}
-                  <div
-                    className='dumpwall__ideacrad-container-icons-upvote flex__center'
-                    onClick={() => {
-                      if (
-                        hasVoted.find((item) => item.id === idea.id)
-                          .voteBool === false
-                      ) {
-                        upVote(idea.id);
-                      }
-                    }}
-                  >
-                    <img
-                      src={images.upvoteIcon}
-                      alt='Upvote'
-                      className='dumpwall__ideacard-container-upvote'
-                    />
-                    <p className='p__normal'>Upvote</p>
-                    <p className='p__normal'>{idea.votes}</p>
-                  </div>
+                {/* <Share name={idea.name} description={idea.description} /> */}
+                <div
+                  className='dumpwall__ideacrad-container-icons-upvote flex__center'
+                  onClick={() => {
+                    if (
+                      hasVoted.find((item) => item.id === idea.id).voteBool ===
+                      false
+                    ) {
+                      upVote(idea.id);
+                    }
+                  }}
+                >
+                  <img
+                    src={images.upvoteIcon}
+                    alt='Upvote'
+                    className='dumpwall__ideacard-container-upvote'
+                  />
+                  <p className='p__normal'>Upvote</p>
+                  <p className='p__normal'>{idea.votes}</p>
                 </div>
               </div>
-            );
-          })}
+            </div>
+          );
+        })}
         <button
           type='button'
           className={
