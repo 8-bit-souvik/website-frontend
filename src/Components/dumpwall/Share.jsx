@@ -13,10 +13,19 @@ import {
   TwitterIcon,
   WhatsappIcon,
 } from "react-share";
+import moment from "moment";
 
-const Share = () => {
+const Share = ({ name, description }) => {
   const data = {
-    title: "DEZENIX",
+    title:
+      moment().format("DD MMMM YYYY") +
+      "\n\n" +
+      "Idea name: " +
+      name +
+      "\n" +
+      "Idea description: " +
+      description +
+      "\n\n",
     url: "https://dezenix.com",
   };
 
