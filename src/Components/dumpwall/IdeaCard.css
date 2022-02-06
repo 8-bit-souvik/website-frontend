@@ -1,7 +1,7 @@
 .dumpwall__ideacard {
   width: 100%;
   flex-direction: column;
-  background-color: rgba(5, 42, 66, 0.75);
+  background-color: rgba(5, 42, 66, 0.8);
 }
 
 .dumpwall__ideacard-heading {
@@ -213,6 +213,7 @@
   .dumpwall__ideacard {
     padding-bottom: 2.5rem;
     padding-top: 2.5rem;
+    border: none;
   }
 }
 
