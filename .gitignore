@@ -5,3 +5,4 @@ dist-ssr
 *.local
 *.cache
 .firebase
+firebase_config.json
