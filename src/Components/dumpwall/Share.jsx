@@ -17,7 +17,6 @@ import {
 const Share = ({ name, description }) => {
   const data = {
     title:
-<<<<<<< HEAD
       new Date(Date.now()).toLocaleDateString("en-US", {
         year: "numeric",
         month: "long",
@@ -31,30 +30,11 @@ const Share = ({ name, description }) => {
       description +
       "\n\n",
     url: "https://dezenix.com",
-=======
-      new Date(Date.now()).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      }) +
-      '\n\n' +
-      'Idea name: ' +
-      name +
-      '\n' +
-      'Idea description: ' +
-      description +
-      '\n\n',
-    url: 'https://dezenix.com',
->>>>>>> 6f35f4e45571bede797e95b40c83f54689a68f84
   };
 
   return (
     <>
-<<<<<<< HEAD
       <div className="social__media">
-=======
-      <div className='social__media'>
->>>>>>> 6f35f4e45571bede797e95b40c83f54689a68f84
         <WhatsappShareButton url={data.url} title={data.title}>
           <WhatsappIcon size={32} round={true} />
         </WhatsappShareButton>

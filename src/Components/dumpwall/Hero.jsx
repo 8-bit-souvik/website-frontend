@@ -13,7 +13,14 @@ const Hero = () => (
       </h1>
       {/* <img src={images.productTextWrapper} alt="" /> */}
       <div className="dumpwall__hero-logo">
-        <img src={images.headerImage} alt="DezenixLogo" />
+        <div className="flex__center header__logo-container">
+          <img
+            src={images.headerLogo}
+            alt="DezenixLogo"
+            className="header__logo"
+          />
+          <img src={images.cylinder} alt="" />
+        </div>
       </div>
       <div className="dumpwall__hero-content-info">
         <p className="p__normal">

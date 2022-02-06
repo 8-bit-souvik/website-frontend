@@ -37,9 +37,31 @@
   grid-row: 1 / -1;
 }
 
-.dumpwall__hero-logo img {
+.dumpwall__hero-logo img:nth-of-type(2) {
   width: 100%;
   object-fit: contain;
+}
+
+.header__logo-container {
+  width: 100%;
+  flex-direction: column;
+}
+
+.header__logo {
+  width: 90%;
+  margin-bottom: 1rem;
+  animation: header__logo-animation 2s ease infinite;
+}
+@keyframes header__logo-animation {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .dumpwall__hero-content-info {
@@ -129,8 +151,12 @@
     );
   }
 
-  .dumpwall__hero-logo img {
-    width: 300px;
+  .dumpwall__hero-logo img:nth-of-type(2) {
+    width: 350px;
+  }
+
+  .header__logo {
+    width: 45%;
   }
 
   .dumpwall__hero-content-info {
@@ -158,7 +184,7 @@
     font-size: 35px;
   }
 
-  .dumpwall__hero-logo img {
-    width: 250px;
+  .dumpwall__hero-logo img:nth-of-type(2) {
+    width: 180px;
   }
 }

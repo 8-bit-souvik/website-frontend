@@ -11,13 +11,15 @@ import shareIcon from "./images/shareIcon.svg";
 import twitterIcon from "./images/twitterIcon.svg";
 import upvoteIcon from "./images/upvoteIcon.svg";
 import uploadIcon from "./images/uploadIcon.svg";
+import headerLogo from "./images/headerLogo.svg";
+import cylinder from "./images/cylinder.svg";
 
 export default {
   dezenixLogo,
   discordIcon,
   githubIcon,
   headerImage,
-  ideasTextUnderline, 
+  ideasTextUnderline,
   instagramIcon,
   linkedinIcon,
   linkIcon,
@@ -26,4 +28,6 @@ export default {
   twitterIcon,
   upvoteIcon,
   uploadIcon,
+  headerLogo,
+  cylinder,
 };
