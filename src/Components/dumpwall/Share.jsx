@@ -13,20 +13,23 @@ import {
   TwitterIcon,
   WhatsappIcon,
 } from "react-share";
-import moment from "moment";
 
 const Share = ({ name, description }) => {
   const data = {
     title:
-      moment().format("DD MMMM YYYY") +
-      "\n\n" +
-      "Idea name: " +
+      new Date(Date.now()).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      }) +
+      '\n\n' +
+      'Idea name: ' +
       name +
-      "\n" +
-      "Idea description: " +
+      '\n' +
+      'Idea description: ' +
       description +
-      "\n\n",
-    url: "https://dezenix.com",
+      '\n\n',
+    url: 'https://dezenix.com',
   };
 
   return (

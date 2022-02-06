@@ -130,6 +130,10 @@
 }  
 
 @media screen and (max-width: 450px) {
+  .dumpwall__hero {
+      padding-left: 0;
+      padding-right: 0;
+  }
     .dumpwall__hero-content-headtext {
         font-size: 35px;
     }
