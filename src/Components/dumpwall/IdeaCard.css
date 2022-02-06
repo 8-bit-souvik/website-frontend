@@ -63,7 +63,7 @@
 }
 
 .dumpwall__ideacard-container-content p:nth-of-type(3) {
-  margin-top: auto
+  margin-top: auto;
 }
 
 .dumpwall__ideacrad-container-icons-share {
@@ -96,7 +96,8 @@
   font-weight: 600;
 }
 
-.dumpwall__ideacrad-container-icons-share:hover, .dumpwall__ideacrad-container-icons-upvote:hover {
+.dumpwall__ideacrad-container-icons-share:hover,
+.dumpwall__ideacrad-container-icons-upvote:hover {
   transform: scale(1.05);
   transition: all 0.1s;
 }

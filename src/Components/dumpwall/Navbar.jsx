@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import "./Navbar.css";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import './Navbar.css';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
@@ -11,9 +11,9 @@ const Navbar = () => {
           <li className="p__normal">home</li>
           <li className="p__normal">about us</li>
         </ul>
-        <div className='dumpwall__navbar-submitButton'>
-          <Link to='submitIdea'>
-            <button className='custom__button'>submit idea</button>
+        <div className="dumpwall__navbar-submitButton">
+          <Link to="submitIdea">
+            <button className="custom__button">submit idea</button>
           </Link>
         </div>
       </div>

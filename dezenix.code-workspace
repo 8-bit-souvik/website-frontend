@@ -16,7 +16,7 @@
     "editor.formatOnType": true,
     "html.format.endWithNewline": true,
     "html.format.indentInnerHtml": true,
-    "prettier.jsxSingleQuote": true,
+    "prettier.jsxSingleQuote": false,
     "prettier.useTabs": false
   },
   "extensions": {

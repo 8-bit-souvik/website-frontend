@@ -1,37 +1,31 @@
-import React from "react";
+import React from 'react';
 import {
   FacebookShareButton,
   LinkedinShareButton,
   RedditShareButton,
   TwitterShareButton,
   WhatsappShareButton,
-} from "react-share";
-import {
-  FacebookIcon,
-  LinkedinIcon,
-  RedditIcon,
-  TwitterIcon,
-  WhatsappIcon,
-} from "react-share";
-import moment from "moment";
+} from 'react-share';
+import { FacebookIcon, LinkedinIcon, RedditIcon, TwitterIcon, WhatsappIcon } from 'react-share';
+import moment from 'moment';
 
 const Share = ({ name, description }) => {
   const data = {
     title:
-      moment().format("DD MMMM YYYY") +
-      "\n\n" +
-      "Idea name: " +
+      moment().format('DD MMMM YYYY') +
+      '\n\n' +
+      'Idea name: ' +
       name +
-      "\n" +
-      "Idea description: " +
+      '\n' +
+      'Idea description: ' +
       description +
-      "\n\n",
-    url: "https://dezenix.com",
+      '\n\n',
+    url: 'https://dezenix.com',
   };
 
   return (
     <>
-      <div className='social__media'>
+      <div className="social__media">
         <WhatsappShareButton url={data.url} title={data.title}>
           <WhatsappIcon size={32} round={true} />
         </WhatsappShareButton>

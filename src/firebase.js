@@ -9,6 +9,4 @@ initializeApp(firebaseConfig);
 export const db = getFirestore();
 
 // collection ref
-export const ideaRef = collection(db, "ideas");
-
-
+export const ideaRef = collection(db, 'ideas');
