@@ -1,5 +1,17 @@
 .dumpwall__hero {
-  background-image: linear-gradient(to right, rgba(5, 42, 66, 0.5) 0, rgba(5, 42, 66, 0.95) 30%);
+  background-image: radial-gradient(
+      circle at 0 0,
+      rgba(5, 42, 66, 0.1) 0,
+      rgba(5, 42, 66, 0.75) 35%,
+      transparent 80%
+    ),
+    radial-gradient(
+      circle at 60% 100%,
+      rgba(5, 42, 66, 0) 0,
+      rgba(5, 42, 66, 0.75) 35%,
+      rgba(5, 42, 66, 0) 150%
+    ),
+    radial-gradient(circle at 100% 0, rgba(5, 42, 66, 0.75) 0, transparent 50%);
   color: var(--color-white);
   padding-bottom: 0;
 }
@@ -20,24 +32,36 @@
   color: var(--color-theme-green);
 }
 
-/* .dumpwall__hero-content-heading img {
-    width: 210px;
-    bottom: 0px;
-    right: 50px;
-    position: absolute;
-} */
-
 .dumpwall__hero-logo {
   grid-column: 2 / -1;
   grid-row: 1 / -1;
-  /* display: flex;
-    justify-content: flex-end;
-    background-color: none; */
 }
 
-.dumpwall__hero-logo img {
+.dumpwall__hero-logo img:nth-of-type(2) {
   width: 100%;
   object-fit: contain;
+}
+
+.header__logo-container {
+  width: 100%;
+  flex-direction: column;
+}
+
+.header__logo {
+  width: 90%;
+  margin-bottom: 1rem;
+  animation: header__logo-animation 2s ease infinite;
+}
+@keyframes header__logo-animation {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .dumpwall__hero-content-info {
@@ -102,6 +126,11 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    background-image: radial-gradient(
+      circle at 0 0,
+      rgba(5, 42, 66, 0.5) 0,
+      rgba(5, 42, 66, 0.8) 20%
+    );
     padding-bottom: 40px;
   }
 
@@ -115,10 +144,19 @@
     margin-top: 20px;
     grid-column: 1 / -1;
     grid-row: 2 / 3;
+    background: radial-gradient(
+      circle at 50% 100%,
+      rgba(128, 237, 153, 0.4) 0,
+      transparent 65%
+    );
   }
 
-  .dumpwall__hero-logo img {
-    width: 300px;
+  .dumpwall__hero-logo img:nth-of-type(2) {
+    width: 350px;
+  }
+
+  .header__logo {
+    width: 45%;
   }
 
   .dumpwall__hero-content-info {
@@ -138,11 +176,16 @@
 }
 
 @media screen and (max-width: 450px) {
-  .dumpwall__hero-content-headtext {
-    font-size: 35px;
-  }
+  .dumpwall__hero {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .dumpwall__hero-content-headtext {
+        font-size: 35px;
+    }
 
-  .dumpwall__hero-logo img {
-    width: 250px;
+
+  .dumpwall__hero-logo img:nth-of-type(2) {
+    width: 180px;
   }
 }

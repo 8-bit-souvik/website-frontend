@@ -91,7 +91,7 @@
 .drop__zone {
   height: 10rem;
   border: 1.5px dashed #083c5d;
-  background-image: url('../../assets/images/uploadIcon.svg');
+  background-image: url("../../assets/images/uploadIcon.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 5rem;
@@ -121,15 +121,72 @@
   background-color: #083c5d;
   padding: 10px 0;
   text-align: center;
+  letter-spacing: 0.05rem;
   border: none;
-  outline: none;
   border-radius: 5px;
   color: white;
   font-size: 18px;
   cursor: pointer;
 }
 
-@media (max-width: 400px) {
+@media screen and (min-width: 2000px) {
+  .dump_form {
+    width: 800px;
+  }
+
+  .cancel__form {
+    padding: 25px;
+    font-size: 1.75rem;
+    border: 5px solid #2d2f30;
+  }
+
+  #greeting__msg {
+    font-size: 3rem;
+  }
+
+  #form__msg {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .input__lables {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .input__field {
+    font-size: 1.75rem;
+    height: 4rem;
+  }
+
+  .text__area {
+    height: 20rem;
+  }
+
+  .drop__zone {
+    height: 15rem;
+  }
+
+  #submit__button {
+    padding: 20px 0;
+    border-radius: 5px;
+    color: white;
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .dump_form {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .dump_form {
+    padding: 20px 30px;
+    margin: 1rem auto;
+  }
+
   .cancel__form {
     margin-left: 90%;
   }

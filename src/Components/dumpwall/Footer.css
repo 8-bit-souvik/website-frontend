@@ -87,6 +87,7 @@
   .dumpwall__footer {
     flex-direction: column;
     align-items: center;
+    background-color: rgba(5, 42, 66, 0.8);
   }
 
   .dumpwall__footer-container {

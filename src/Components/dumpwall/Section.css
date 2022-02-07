@@ -1,3 +1,20 @@
+.social__media {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.share__icons {
+  cursor: pointer;
+}
+
+.share__icons:hover {
+  transform: scale(1.2);
+  transition: all 0.2s;
+}
+
 .dumpwall__section {
   width: 100%;
   padding: 20px;

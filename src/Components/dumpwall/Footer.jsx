@@ -1,6 +1,6 @@
-import React from 'react';
-import './Footer.css';
-import images from '../../../assets/images.jsx';
+import React from "react";
+import "./Footer.css";
+import images from "../../../assets/images.jsx";
 
 const Footer = () => {
   return (
@@ -8,17 +8,20 @@ const Footer = () => {
       <div className="dumpwall__footer flex__justify section__padding">
         <div className="dumpwall__footer-container">
           <div className="dumpwall__footer-container-heading">
-            <img alt="Dezenix logo" src={images.dezenixLogo} title="Dezenix" />
+            <img src={images.dezenixLogo} title="Dezenix" alt="Dezenix logo" />
             <h2 className="p__bold">dezenix</h2>
           </div>
           <p className="footer__para p__normal">
             Dezenix is a community of kick🍑 developers and designers.
             <br />
-            Learning togethePr and growing together each and every day.
+            Learning together and growing together each and every day.
           </p>
         </div>
         <div className="dumpwall__footer-container">
-          <h2 style={{ padding: '4px 0' }} className="dumpwall__footer-container-heading p__bold">
+          <h2
+            style={{ padding: "4px 0" }}
+            className="dumpwall__footer-container-heading p__bold"
+          >
             Join Us Now
           </h2>
           <span className="join__link__icons">
