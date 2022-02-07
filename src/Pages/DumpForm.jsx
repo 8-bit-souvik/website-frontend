@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./DumpForm.css";
+import "./Dumpform.css";
 import { addDoc } from "firebase/firestore";
 import { ideaRef } from "../firebase";
 import { storage } from "../firebase";
@@ -131,7 +131,6 @@ const DumpForm = () => {
           </div>
           <label htmlFor="imageURL" className="input__lables">
             Please share any Relavent Link ( Figma, etc )
-            <span className="asteriks">*</span>
           </label>
           <input
             className="input__field"
@@ -148,7 +147,7 @@ const DumpForm = () => {
             type="submit"
             onClick={submitIdea}
           >
-            submit idea
+            Submit Idea
           </button>
         </form>
       </div>

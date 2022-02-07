@@ -1,4 +1,5 @@
 import React from "react";
+import './Section.css';
 import {
   FacebookShareButton,
   LinkedinShareButton,
@@ -34,21 +35,21 @@ const Share = ({ name, description }) => {
 
   return (
     <>
-      <div className="social__media">
-        <WhatsappShareButton url={data.url} title={data.title}>
-          <WhatsappIcon size={32} round={true} />
+      <div className='social__media'>
+        <WhatsappShareButton url={data.url} title="{data.title}" className="share__icons">
+          <WhatsappIcon size={50} round={true} />
         </WhatsappShareButton>
-        <TwitterShareButton url={data.url} title={data.title}>
-          <TwitterIcon size={32} round={true} />
+        <TwitterShareButton url={data.url} title={data.title} className="share__icons">
+          <TwitterIcon size={50} round={true} />
         </TwitterShareButton>
-        <RedditShareButton url={data.url} title={data.title}>
-          <RedditIcon size={32} round={true} />
+        <RedditShareButton url={data.url} title={data.title} className="share__icons">
+          <RedditIcon size={50} round={true} />
         </RedditShareButton>
-        <LinkedinShareButton url={data.url} title={data.title}>
-          <LinkedinIcon size={32} round={true} />
+        <LinkedinShareButton url={data.url} title={data.title} className="share__icons">
+          <LinkedinIcon size={50} round={true} />
         </LinkedinShareButton>
-        <FacebookShareButton url={data.url} title={data.title}>
-          <FacebookIcon size={32} round={true} />
+        <FacebookShareButton url={data.url} title={data.title} className="share__icons">
+          <FacebookIcon size={50} round={true} />
         </FacebookShareButton>
       </div>
     </>
