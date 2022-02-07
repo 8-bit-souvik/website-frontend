@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import './IdeaCard.css';
-import { getDocs, doc, updateDoc } from 'firebase/firestore';
-import { ideaRef, db } from '../../firebase.js';
-import Section from './Section';
-import images from '../../../assets/images.jsx';
-import Share from './Share';
+import React, { useEffect, useState } from "react";
+import "./IdeaCard.css";
+import { getDocs, doc, updateDoc } from "firebase/firestore";
+import { ideaRef, db } from "../../firebase.js";
+import Section from "./Section";
+import images from "../../../assets/images.jsx";
+import Share from "./Share";
 
 const LOAD_MORE_SIZE = 4;
 const LOAD_MORE_ACTION = "Load More";
@@ -117,7 +117,7 @@ const Ideacard = () => {
                   </p>
                 </div>
                 <div className="dumpwall__ideacrad-container-icons flex__justify">
-                  <a href="#open-modal">
+                  <a href="#share">
                     <div className="dumpwall__ideacrad-container-icons-share flex__center">
                       <img
                         src={images.shareIcon}
@@ -127,16 +127,28 @@ const Ideacard = () => {
                       <p className="p__normal">Share</p>
                     </div>
                   </a>
-                  <div id="open-modal" class="dumpwall__ideacrad-modaWindow flex__center">
-                    <div className='dumpwall__ideacrad-modaWindow-iconsContainer flex__center'>
-                      <a href="#modal-close">
-                        <p title="Close" className="dumpwall__ideacrad-modaWindow-modalClose p__bold">X</p>
+                  <div
+                    id="share"
+                    class="dumpwall__ideacrad-modaWindow flex__center"
+                  >
+                    <div className="dumpwall__ideacrad-modaWindow-iconsContainer flex__center">
+                      <a href="#">
+                        <p
+                          title="Close"
+                          className="dumpwall__ideacrad-modaWindow-modalClose p__bold"
+                        >
+                          X
+                        </p>
                       </a>
-                      <Share name={idea.name} description={idea.description} />
+                      <Share idea={idea} />
                     </div>
                   </div>
                   <div
-                    className={ideaUpvoted ? 'dumpwall__ideacrad-container-icons-downvote flex__center' : "dumpwall__ideacrad-container-icons-upvote flex__center"}
+                    className={
+                      ideaUpvoted
+                        ? "dumpwall__ideacrad-container-icons-downvote flex__center"
+                        : "dumpwall__ideacrad-container-icons-upvote flex__center"
+                    }
                     onClick={() => changeVote(id, !ideaUpvoted)}
                   >
                     <img

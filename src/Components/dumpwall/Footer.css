@@ -1,7 +1,6 @@
 .dumpwall__footer {
   width: 100%;
   background-color: rgba(5, 42, 66, 0.75);
-  border: 1px solid rgb(255, 255, 255, 0.1);
   color: var(--color-white);
   align-items: flex-start;
 }

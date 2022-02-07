@@ -13,6 +13,8 @@ import upvoteIcon from "./images/upvoteIcon.svg";
 import uploadIcon from "./images/uploadIcon.svg";
 import headerLogo from "./images/headerLogo.svg";
 import cylinder from "./images/cylinder.svg";
+import dezenix from "./images/dezenix.svg";
+import wave from "./images/wave.svg";
 
 export default {
   dezenixLogo,
@@ -30,4 +32,6 @@ export default {
   uploadIcon,
   headerLogo,
   cylinder,
+  dezenix,
+  wave,
 };
