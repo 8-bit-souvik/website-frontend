@@ -5,6 +5,7 @@ import { addDoc } from "firebase/firestore";
 import { ideaRef } from "../firebase";
 import { storage } from "../firebase";
 import { ref as storageRef, uploadBytes } from "firebase/storage";
+import images from "../../assets/images.jsx";
 
 let fileToBeUploaded;
 
@@ -68,7 +69,10 @@ const DumpForm = () => {
           <button className="cancel__form">X</button>
         </Link>
         <div className="form__heading">
-          <h1 id="greeting__msg">Hi There &#128075;</h1>
+          <h1 id="greeting__msg">
+            Hi There <img src={images.wave} alt="wave" />
+          </h1>
+
           <p id="form__msg">
             Feel free to share your ideas and the community will help you to
             turn it into a product.

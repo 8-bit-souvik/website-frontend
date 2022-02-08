@@ -1,5 +1,5 @@
 import React from "react";
-import './Section.css';
+import "./Section.css";
 import {
   FacebookShareButton,
   LinkedinShareButton,
@@ -15,7 +15,7 @@ import {
   WhatsappIcon,
 } from "react-share";
 
-const Share = ({ name, description }) => {
+const Share = ({ closeModal, idea }) => {
   const data = {
     title:
       new Date(Date.now()).toLocaleDateString("en-US", {
@@ -25,31 +25,67 @@ const Share = ({ name, description }) => {
       }) +
       "\n\n" +
       "Idea name: " +
-      name +
+      idea.name +
       "\n" +
       "Idea description: " +
-      description +
+      idea.description +
       "\n\n",
     url: "https://dezenix.com",
   };
 
   return (
     <>
-      <div className='social__media'>
-        <WhatsappShareButton url={data.url} title="{data.title}" className="share__icons">
+      <div className="social__media">
+        <WhatsappShareButton
+          url={data.url}
+          title={data.title}
+          className="share__icons"
+        >
           <WhatsappIcon size={50} round={true} />
         </WhatsappShareButton>
-        <TwitterShareButton url={data.url} title={data.title} className="share__icons">
-          <TwitterIcon size={50} round={true} />
+        <TwitterShareButton
+          url={data.url}
+          title={data.title}
+          className="share__icons"
+        >
+          <TwitterIcon
+            size={50}
+            round={true}
+            onClick={() => closeModal(false)}
+          />
         </TwitterShareButton>
-        <RedditShareButton url={data.url} title={data.title} className="share__icons">
-          <RedditIcon size={50} round={true} />
+        <RedditShareButton
+          url={data.url}
+          title={data.title}
+          className="share__icons"
+        >
+          <RedditIcon
+            size={50}
+            round={true}
+            onClick={() => closeModal(false)}
+          />
         </RedditShareButton>
-        <LinkedinShareButton url={data.url} title={data.title} className="share__icons">
-          <LinkedinIcon size={50} round={true} />
+        <LinkedinShareButton
+          url={data.url}
+          title={data.title}
+          className="share__icons"
+        >
+          <LinkedinIcon
+            size={50}
+            round={true}
+            onClick={() => closeModal(false)}
+          />
         </LinkedinShareButton>
-        <FacebookShareButton url={data.url} title={data.title} className="share__icons">
-          <FacebookIcon size={50} round={true} />
+        <FacebookShareButton
+          url={data.url}
+          title={data.title}
+          className="share__icons"
+        >
+          <FacebookIcon
+            size={50}
+            round={true}
+            onClick={() => closeModal(false)}
+          />
         </FacebookShareButton>
       </div>
     </>

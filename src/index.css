@@ -4,6 +4,7 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
   scroll-behavior: smooth;
+  -webkit-tap-highlight-color: none;
 }
 
 :root {
@@ -21,6 +22,14 @@ a {
 
 ul {
   margin: 0;
+}
+
+img {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }
 
 .slide__right {

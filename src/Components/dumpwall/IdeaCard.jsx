@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import './IdeaCard.css';
-import { getDocs, doc, updateDoc } from 'firebase/firestore';
-import { ideaRef, db } from '../../firebase.js';
-import Section from './Section';
-import images from '../../../assets/images.jsx';
-import Share from './Share';
+import React, { useEffect, useState } from "react";
+import "./IdeaCard.css";
+import { getDocs, doc, updateDoc } from "firebase/firestore";
+import { ideaRef, db } from "../../firebase.js";
+import Section from "./Section";
+import images from "../../../assets/images.jsx";
+import Share from "./Share";
 
 const LOAD_MORE_SIZE = 4;
 const LOAD_MORE_ACTION = "Load More";
@@ -24,7 +24,8 @@ const Ideacard = () => {
   const [ideaList, setIdeaList] = useState({});
   const [listSize, setListSize] = useState(LOAD_MORE_SIZE);
   const [hasVoted, setHasVoted] = useState(getLocalIdeas()); // ['id', 'id1', 'id2'...]
-  const [showReadMore, setRead] = useState(false);
+  const [modalStatus, setModalStatus] = useState(false);
+  const [shareID, setShareID] = useState(null);
 
   useEffect(async () => {
     const docs = await getDocs(ideaRef);
@@ -100,7 +101,10 @@ const Ideacard = () => {
             return (
               <div key={id} className="dumpwall__ideacard-container">
                 <div className="dumpwall__ideacard-container-img flex__center">
-                  <img src="" alt="" />
+                  <img
+                    src={`https://avatars.dicebear.com/api/pixel-art/${Math.random()}.svg`}
+                    alt=""
+                  />
                 </div>
                 <div className="dumpwall__ideacard-container-content">
                   <p className="p__bold">{idea.name}</p>
@@ -117,26 +121,43 @@ const Ideacard = () => {
                   </p>
                 </div>
                 <div className="dumpwall__ideacrad-container-icons flex__justify">
-                  <a href="#open-modal">
-                    <div className="dumpwall__ideacrad-container-icons-share flex__center">
-                      <img
-                        src={images.shareIcon}
-                        alt="Share"
-                        className="dumpwall__ideacard-container-share"
-                      />
-                      <p className="p__normal">Share</p>
-                    </div>
-                  </a>
-                  <div id="open-modal" class="dumpwall__ideacrad-modaWindow flex__center">
-                    <div className='dumpwall__ideacrad-modaWindow-iconsContainer flex__center'>
-                      <a href="#modal-close">
-                        <p title="Close" className="dumpwall__ideacrad-modaWindow-modalClose p__bold">X</p>
-                      </a>
-                      <Share name={idea.name} description={idea.description} />
-                    </div>
-                  </div>
                   <div
-                    className={ideaUpvoted ? 'dumpwall__ideacrad-container-icons-downvote flex__center' : "dumpwall__ideacrad-container-icons-upvote flex__center"}
+                    className="dumpwall__ideacrad-container-icons-share flex__center"
+                    onClick={() => {
+                      setShareID(id);
+                      setModalStatus(true);
+                    }}
+                  >
+                    <img
+                      src={images.shareIcon}
+                      alt="Share"
+                      className="dumpwall__ideacard-container-share"
+                    />
+                    <p className="p__normal">Share</p>
+                  </div>
+                  {modalStatus && (
+                    <div className="dumpwall__ideacrad-modaWindow-overlay flex__center">
+                      <div className="dumpwall__ideacrad-modaWindow-iconsContainer flex__center">
+                        <p
+                          title="Close"
+                          className="dumpwall__ideacrad-modaWindow-modalClose p__bold"
+                          onClick={() => setModalStatus(false)}
+                        >
+                          X
+                        </p>
+                        <Share
+                          idea={ideaList[shareID]}
+                          closeModal={setModalStatus}
+                        />
+                      </div>
+                    </div>
+                  )}
+                  <div
+                    className={
+                      ideaUpvoted
+                        ? "dumpwall__ideacrad-container-icons-downvote flex__center"
+                        : "dumpwall__ideacrad-container-icons-upvote flex__center"
+                    }
                     onClick={() => changeVote(id, !ideaUpvoted)}
                   >
                     <img

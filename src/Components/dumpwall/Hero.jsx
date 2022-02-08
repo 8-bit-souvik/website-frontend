@@ -9,9 +9,13 @@ const Hero = () => (
       <h1 className="dumpwall__hero-content-headtext">
         Convert your
         <br />
-        <span>ideas to product</span>
+        <span>
+          ideas to <span className="productText">
+            product
+            <img src={images.productTextWrapper} alt="" />
+          </span>
+        </span>
       </h1>
-      {/* <img src={images.productTextWrapper} alt="" /> */}
       <div className="dumpwall__hero-logo">
         <div className="flex__center header__logo-container">
           <img
