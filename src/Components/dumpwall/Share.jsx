@@ -1,5 +1,5 @@
 import React from "react";
-import './Section.css';
+import "./Section.css";
 import {
   FacebookShareButton,
   LinkedinShareButton,
@@ -14,6 +14,7 @@ import {
   TwitterIcon,
   WhatsappIcon,
 } from "react-share";
+import images from "../../../assets/images.jsx";
 
 const Share = ({ name, description, closeModal }) => {
   const data = {
@@ -33,19 +34,18 @@ const Share = ({ name, description, closeModal }) => {
     url: "https://dezenix.com",
   };
 
+  console.log(name);
+
   return (
     <>
+      <h1>Name = {name}</h1>
       <div className="social__media">
         <WhatsappShareButton
           url={data.url}
-          title="{data.title}"
+          title={data.title}
           className="share__icons"
         >
-          <WhatsappIcon
-            size={50}
-            round={true}
-            onClick={() => closeModal(false)}
-          />
+          <WhatsappIcon size={50} round={true} />
         </WhatsappShareButton>
         <TwitterShareButton
           url={data.url}

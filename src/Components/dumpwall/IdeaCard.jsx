@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import './IdeaCard.css';
-import { getDocs, doc, updateDoc } from 'firebase/firestore';
-import { ideaRef, db } from '../../firebase.js';
-import Section from './Section';
-import images from '../../../assets/images.jsx';
-import Share from './Share';
+import React, { useEffect, useState } from "react";
+import "./IdeaCard.css";
+import { getDocs, doc, updateDoc } from "firebase/firestore";
+import { ideaRef, db } from "../../firebase.js";
+import Section from "./Section";
+import images from "../../../assets/images.jsx";
+import Share from "./Share";
 
 const LOAD_MORE_SIZE = 4;
 const LOAD_MORE_ACTION = "Load More";

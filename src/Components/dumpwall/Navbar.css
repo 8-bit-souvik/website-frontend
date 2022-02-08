@@ -9,9 +9,7 @@
 }
 
 .dumpwall__navbar-logoName {
-  font-weight: 700;
-  font-size: 25px;
-  letter-spacing: 0.05rem;
+  width: 6rem;
 }
 
 .dumpwall__navbar-menu {
@@ -22,11 +20,11 @@
   overflow: auto;
   list-style-type: none;
   text-transform: uppercase;
-  cursor: pointer;
 }
 
 .dumpwall__navbar-menu li {
   margin-right: 3vw;
+  cursor: pointer;
 }
 
 .dumpwall__navbar-menu li::after {
@@ -63,7 +61,7 @@
   }
 
   .dumpwall__navbar-logoName {
-    font-size: 40px;
+    width: 10rem;
   }
 
   .dumpwall__navbar-menu li {
@@ -97,6 +95,6 @@
     margin-left: 4vw;
   }
   .dumpwall__navbar-logoName {
-    font-size: 20px;
+    width: 4rem;
   }
 }
