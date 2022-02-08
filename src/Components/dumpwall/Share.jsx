@@ -38,7 +38,6 @@ const Share = ({ name, description, closeModal }) => {
 
   return (
     <>
-      <h1>Name = {name}</h1>
       <div className="social__media">
         <WhatsappShareButton
           url={data.url}
