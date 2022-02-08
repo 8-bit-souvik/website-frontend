@@ -25,11 +25,41 @@ const Footer = () => {
             Join Us Now
           </h2>
           <span className="join__link__icons">
-            <img className="link__icons" src={images.githubIcon} alt="" />
-            <img className="link__icons" src={images.linkedinIcon} alt="" />
-            <img className="link__icons" src={images.discordIcon} alt="" />
-            <img className="link__icons" src={images.instagramIcon} alt="" />
-            <img className="link__icons" src={images.twitterIcon} alt="" />
+            <a
+              href="https://github.com/dezenix"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img className="link__icons" src={images.githubIcon} alt="" />
+            </a>
+            <a
+              href="https://www.linkedin.com/company/dezenix/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img className="link__icons" src={images.linkedinIcon} alt="" />
+            </a>
+            <a
+              href="https://discord.io/dezenix"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img className="link__icons" src={images.discordIcon} alt="" />
+            </a>
+            <a
+              href="https://www.instagram.com/dezenixofficial/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img className="link__icons" src={images.instagramIcon} alt="" />
+            </a>
+            <a
+              href="https://twitter.com/dezenix"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img className="link__icons" src={images.twitterIcon} alt="" />
+            </a>
           </span>
         </div>
       </div>

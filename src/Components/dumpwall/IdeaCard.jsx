@@ -101,7 +101,10 @@ const Ideacard = () => {
             return (
               <div key={id} className="dumpwall__ideacard-container">
                 <div className="dumpwall__ideacard-container-img flex__center">
-                  <img src="" alt="" />
+                  <img
+                    src={`https://avatars.dicebear.com/api/pixel-art/${Math.random()}.svg`}
+                    alt=""
+                  />
                 </div>
                 <div className="dumpwall__ideacard-container-content">
                   <p className="p__bold">{idea.name}</p>

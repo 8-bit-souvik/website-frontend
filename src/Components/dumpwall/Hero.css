@@ -41,6 +41,7 @@
   inset: 0;
   width: 200px;
   transform: translateX(-15px) translateY(-5px);
+  pointer-events: none;
 }
 
 .dumpwall__hero-logo {
@@ -56,6 +57,7 @@
 .header__logo-container {
   width: 100%;
   flex-direction: column;
+  pointer-events: none;
 }
 
 .header__logo {
