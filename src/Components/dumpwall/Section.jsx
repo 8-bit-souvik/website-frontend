@@ -17,9 +17,9 @@ const Section = () => {
           </p>
         </div>
         <div className="dumpwall__section-rightContainer">
-          <a href="mailto:support@dezenix.org">
+          <a href="mailto:support@dezenix.com">
             <div className="dumpwall__section-mailLink flex__center">
-              <p className="email p__bold">support@dezenix.org</p>
+              <p className="email p__bold">support@dezenix.com</p>
               <img src={images.linkIcon} alt="linkIcon" />
             </div>
           </a>
