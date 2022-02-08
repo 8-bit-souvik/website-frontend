@@ -24,7 +24,6 @@ const Ideacard = () => {
   const [ideaList, setIdeaList] = useState({});
   const [listSize, setListSize] = useState(LOAD_MORE_SIZE);
   const [hasVoted, setHasVoted] = useState(getLocalIdeas()); // ['id', 'id1', 'id2'...]
-
   const [modalStatus, setModalStatus] = useState(false);
 
   useEffect(async () => {
