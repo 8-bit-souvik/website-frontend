@@ -24,8 +24,8 @@ const Ideacard = () => {
   const [ideaList, setIdeaList] = useState({});
   const [listSize, setListSize] = useState(LOAD_MORE_SIZE);
   const [hasVoted, setHasVoted] = useState(getLocalIdeas()); // ['id', 'id1', 'id2'...]
-
   const [modalStatus, setModalStatus] = useState(false);
+  const [shareID, setShareID] = useState(null);
 
   useEffect(async () => {
     const docs = await getDocs(ideaRef);
@@ -120,7 +120,10 @@ const Ideacard = () => {
                 <div className="dumpwall__ideacrad-container-icons flex__justify">
                   <div
                     className="dumpwall__ideacrad-container-icons-share flex__center"
-                    onClick={() => setModalStatus(true)}
+                    onClick={() => {
+                      setShareID(id);
+                      setModalStatus(true);
+                    }}
                   >
                     <img
                       src={images.shareIcon}
@@ -140,9 +143,8 @@ const Ideacard = () => {
                           X
                         </p>
                         <Share
-                          name={idea.name}
-                          description={idea.description}
-                          closeModal = {setModalStatus}
+                          idea={ideaList[shareID]}
+                          closeModal={setModalStatus}
                         />
                       </div>
                     </div>

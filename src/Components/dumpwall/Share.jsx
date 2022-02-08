@@ -14,9 +14,8 @@ import {
   TwitterIcon,
   WhatsappIcon,
 } from "react-share";
-import images from "../../../assets/images.jsx";
 
-const Share = ({ name, description, closeModal }) => {
+const Share = ({ closeModal, idea }) => {
   const data = {
     title:
       new Date(Date.now()).toLocaleDateString("en-US", {
@@ -26,15 +25,13 @@ const Share = ({ name, description, closeModal }) => {
       }) +
       "\n\n" +
       "Idea name: " +
-      name +
+      idea.name +
       "\n" +
       "Idea description: " +
-      description +
+      idea.description +
       "\n\n",
     url: "https://dezenix.com",
   };
-
-  console.log(name);
 
   return (
     <>
