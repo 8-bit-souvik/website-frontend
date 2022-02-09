@@ -10,6 +10,7 @@ import productTextWrapper from "./images/productTextWrapper.svg";
 import shareIcon from "./images/shareIcon.svg";
 import twitterIcon from "./images/twitterIcon.svg";
 import upvoteIcon from "./images/upvoteIcon.svg";
+import upvoteIconFilled from "./images/upvoteIconFilled.svg";
 import uploadIcon from "./images/uploadIcon.svg";
 import headerLogo from "./images/headerLogo.svg";
 import cylinder from "./images/cylinder.svg";
@@ -29,6 +30,7 @@ export default {
   shareIcon,
   twitterIcon,
   upvoteIcon,
+  upvoteIconFilled,
   uploadIcon,
   headerLogo,
   cylinder,
