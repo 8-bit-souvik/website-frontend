@@ -11,13 +11,12 @@ const LOAD_MORE_SIZE = 4;
 const LOAD_MORE_ACTION = 'Load More';
 
 // check whether list of ideas has been stored in LS
-const getLocalIdeas = () => {
-  let list = localStorage.getItem('ideas');
-  if (list) {
-    return JSON.parse(localStorage.getItem('ideas'));
-  } else {
-    return [];
-  }
+const getLocalUpvoted = () => {
+  return JSON.parse(localStorage.getItem('upvoted')) || [];
+};
+
+const getLocalDownvoted = () => {
+  return JSON.parse(localStorage.getItem('downvoted')) || [];
 };
 
 const RandomDisplayImage = () => {
@@ -33,7 +32,8 @@ const RandomDisplayImage = () => {
 const Ideacard = () => {
   const [ideaList, setIdeaList] = useState({});
   const [listSize, setListSize] = useState(LOAD_MORE_SIZE);
-  const [hasVoted, setHasVoted] = useState(getLocalIdeas()); // ['id', 'id1', 'id2'...]
+  const [hasUpVoted, setHasUpVoted] = useState(getLocalUpvoted()); // ['id', 'id1', 'id2'...]
+  const [hasDownVoted, setHasDownVoted] = useState(getLocalDownvoted()); // ['id', 'id1', 'id2'...]
   const [modalStatus, setModalStatus] = useState(false);
   const [shareID, setShareID] = useState(null);
   const [ideaModalStatus, setIdeaModalStatus] = useState(false);
@@ -55,18 +55,83 @@ const Ideacard = () => {
     setListSize(listSize + LOAD_MORE_SIZE);
   };
 
+  const removeAtIndex = (list, index) => {
+    const tmp = [...list];
+    tmp.splice(index, 1);
+    return tmp;
+  };
+
+  /**
+   *
+   * @param {string} id firebase generated of the idea
+   * @param {boolean} upvote true if upvote button is clicked.
+   *                         false if downvote button is clicked.
+   */
   const changeVote = async (id, upvote) => {
     const ideaToBeUpdated = doc(db, 'ideas', id);
     const idea = ideaList[id];
-    const votes = upvote ? idea.votes + 1 : idea.votes - 1;
 
-    if (upvote && !hasVoted.includes(id)) {
-      setHasVoted([...hasVoted, id]);
+    const isIdeaUpvotedIndex = hasUpVoted.findIndex((val) => val === id);
+    const isIdeaDownvotedIndex = hasDownVoted.findIndex((val) => val === id);
+
+    let votes = idea.votes;
+
+    // Shouldn't happen since an idea can't be upvoted and downvoted at the same time
+    if (isIdeaUpvotedIndex !== -1 && isIdeaDownvotedIndex !== -1) {
+      return;
     }
 
-    if (!upvote && hasVoted.includes(id)) {
-      const index = hasVoted.findIndex((val) => val === id);
-      setHasVoted([...hasVoted.slice(0, index), ...hasVoted.slice(index + 1, hasVoted.length)]);
+    if (isIdeaUpvotedIndex !== -1) {
+      // If upvote button is clicked
+      if (upvote) {
+        votes -= 1;
+      }
+
+      // If downvote button is clicked
+      if (!upvote) {
+        // -2 since we first have to remove the upvote effect and then add the downvote effect
+        votes -= 2;
+
+        // Add idea to downvoted list
+        setHasDownVoted([...hasDownVoted, id]);
+      }
+
+      // Remove idea from upvoted list
+      setHasUpVoted([...removeAtIndex(hasUpVoted, isIdeaUpvotedIndex)]);
+    }
+
+    if (isIdeaDownvotedIndex !== -1) {
+      // If upvote button is clicked
+      if (upvote) {
+        // +2 since we first have to remove the downvote effect and then add the upvote effect
+        votes += 2;
+
+        // Add idea to upvoted list
+        setHasUpVoted([...hasUpVoted, id]);
+      }
+
+      // If downvote button is clicked
+      if (!upvote) {
+        votes += 1;
+      }
+
+      // Remove idea from downvoted list
+      setHasDownVoted([...removeAtIndex(hasDownVoted, isIdeaDownvotedIndex)]);
+    }
+
+    // If neither of the buttons are pressed
+    if (isIdeaUpvotedIndex === -1 && isIdeaDownvotedIndex === -1) {
+      // If upvote button is clicked
+      if (upvote) {
+        votes += 1;
+        setHasUpVoted([...hasUpVoted, id]);
+      }
+
+      // If downvote button is clicked
+      if (!upvote) {
+        votes -= 1;
+        setHasDownVoted([...hasDownVoted, id]);
+      }
     }
 
     const tmpIdeaList = ideaList;
@@ -76,12 +141,13 @@ const Ideacard = () => {
     await updateDoc(ideaToBeUpdated, { votes });
   };
 
-  useEffect(
-    (id) => {
-      localStorage.setItem('ideas', JSON.stringify(hasVoted));
-    },
-    [hasVoted],
-  );
+  useEffect(() => {
+    localStorage.setItem('upvoted', JSON.stringify(hasUpVoted));
+  }, [hasUpVoted]);
+
+  useEffect(() => {
+    localStorage.setItem('downvoted', JSON.stringify(hasDownVoted));
+  }, [hasDownVoted]);
 
   const ideaKeys = Object.keys(ideaList);
   ideaKeys.sort((a, b) => {
@@ -103,7 +169,8 @@ const Ideacard = () => {
 
         {ideaKeys.map((id, index) => {
           const idea = ideaList[id];
-          const ideaUpvoted = hasVoted.includes(id);
+          const ideaUpvoted = hasUpVoted.includes(id);
+          const ideaDownvoted = hasDownVoted.includes(id);
 
           if (index + 1 <= listSize) {
             return (
@@ -183,7 +250,7 @@ const Ideacard = () => {
                               </div>
                             </div>
                           )}
-                          <div
+                          {/* <div
                             className="dumpwall__ideacrad-container-icons-upvote flex__center"
                             onClick={() => changeVote(id, !ideaUpvoted)}
                           >
@@ -192,9 +259,22 @@ const Ideacard = () => {
                               alt="Upvote"
                               className="dumpwall__ideacard-container-upvote"
                             />
-                            <p className="p__normal">{ideaUpvoted ? 'Downvote' : 'Upvote'}</p>
+                            <p className="p__normal">Upvote</p>
                             <p className="p__normal">{idea.votes}</p>
-                          </div>
+                          </div> */}
+
+                          {/* <div
+                            className="dumpwall__ideacrad-container-icons-upvote flex__center kek"
+                            onClick={() => changeVote(id, !ideaUpvoted)}
+                          >
+                            <img
+                              src={ideaDownvoted ? images.upvoteIconFilled : images.upvoteIcon}
+                              alt="Downvote"
+                              className="dumpwall__ideacard-container-upvote"
+                            />
+                            <p className="p__normal">Downvote</p>
+                            <p className="p__normal">{idea.votes}</p>
+                          </div> */}
                         </div>
                       </div>
                     </div>
@@ -237,16 +317,29 @@ const Ideacard = () => {
                       </div>
                     </div>
                   )}
+                  // TODO: Fix buttons
                   <div
                     className="dumpwall__ideacrad-container-icons-upvote flex__center"
-                    onClick={() => changeVote(id, !ideaUpvoted)}
+                    onClick={() => changeVote(id, true)}
                   >
                     <img
                       src={ideaUpvoted ? images.upvoteIconFilled : images.upvoteIcon}
                       alt="Upvote"
                       className="dumpwall__ideacard-container-upvote"
                     />
-                    <p className="p__normal">{ideaUpvoted ? 'Downvote' : 'Upvote'}</p>
+                    <p className="p__normal">Upvote</p>
+                    <p className="p__normal">{idea.votes}</p>
+                  </div>
+                  <div
+                    className="dumpwall__ideacrad-container-icons-downvote flex__center"
+                    onClick={() => changeVote(id, false)}
+                  >
+                    <img
+                      src={ideaDownvoted ? images.upvoteIconFilled : images.upvoteIcon}
+                      alt="Downvote"
+                      className="dumpwall__ideacard-container-upvote"
+                    />
+                    <p className="p__normal">Downvote</p>
                     <p className="p__normal">{idea.votes}</p>
                   </div>
                 </div>

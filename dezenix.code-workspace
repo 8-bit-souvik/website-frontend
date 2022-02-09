@@ -17,7 +17,10 @@
     "html.format.endWithNewline": true,
     "html.format.indentInnerHtml": true,
     "prettier.jsxSingleQuote": false,
-    "prettier.useTabs": false
+    "prettier.useTabs": false,
+    "cSpell.words": [
+      "Downvoted"
+    ]
   },
   "extensions": {
     "recommendations": [
