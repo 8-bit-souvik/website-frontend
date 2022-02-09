@@ -26,6 +26,7 @@ const Ideacard = () => {
   const [hasVoted, setHasVoted] = useState(getLocalIdeas()); // ['id', 'id1', 'id2'...]
   const [modalStatus, setModalStatus] = useState(false);
   const [shareID, setShareID] = useState(null);
+  const [ideaModalStatus, setIdeaModalStatus] = useState(false);
 
   useEffect(async () => {
     const docs = await getDocs(ideaRef);
@@ -110,6 +111,8 @@ const Ideacard = () => {
                   <p className="p__bold">{idea.name}</p>
                   <p style={{ color: "#97BED6" }} className="p__normal">
                     {idea.description}
+                    {/* {idea.description.substring(0, 500)}...
+                    <button className="readMore" onClick={}>Read More</button> */}
                   </p>
                   <p style={{ color: "#97BED6" }} className="p__normal">
                     Submitted on:{" "}
@@ -153,15 +156,15 @@ const Ideacard = () => {
                     </div>
                   )}
                   <div
-                    className={
-                      ideaUpvoted
-                        ? "dumpwall__ideacrad-container-icons-downvote flex__center"
-                        : "dumpwall__ideacrad-container-icons-upvote flex__center"
-                    }
+                    className="dumpwall__ideacrad-container-icons-upvote flex__center"
                     onClick={() => changeVote(id, !ideaUpvoted)}
                   >
                     <img
-                      src={images.upvoteIcon}
+                      src={
+                        ideaUpvoted
+                          ? images.upvoteIconFilled
+                          : images.upvoteIcon
+                      }
                       alt="Upvote"
                       className="dumpwall__ideacard-container-upvote"
                     />
