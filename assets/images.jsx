@@ -16,6 +16,10 @@ import headerLogo from "./images/headerLogo.svg";
 import cylinder from "./images/cylinder.svg";
 import dezenix from "./images/dezenix.svg";
 import wave from "./images/wave.svg";
+import ideaCardImageOne from "./images/ideaCardImageOne.svg";
+import ideaCardImageTwo from "./images/ideaCardImageTwo.svg";
+import ideaCardImageThree from "./images/ideaCardImageThree.svg";
+import ideaCardImageFour from "./images/ideaCardImageFour.svg";
 
 export default {
   dezenixLogo,
@@ -36,4 +40,8 @@ export default {
   cylinder,
   dezenix,
   wave,
+  ideaCardImageOne,
+  ideaCardImageTwo,
+  ideaCardImageThree,
+  ideaCardImageFour,
 };

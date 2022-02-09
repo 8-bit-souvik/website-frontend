@@ -15,7 +15,9 @@ const Navbar = () => {
           />
         </a>
         <ul className="dumpwall__navbar-menu">
-          <li className="p__normal">home</li>
+          <a href="/">
+            <li className="p__normal">home</li>
+          </a>
           {/* <li className="p__normal">about us</li> */}
         </ul>
         <div className="dumpwall__navbar-submitButton">

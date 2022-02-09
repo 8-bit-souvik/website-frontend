@@ -67,11 +67,12 @@
   margin-top: auto;
 }
 
-/* .readMore {
+.readMore {
   background-color: transparent;
   border: none;
   color: white;
   font-size: 15px;
+  font-weight: 300;
   line-height: 150%;
   cursor: pointer;
 }
@@ -91,7 +92,7 @@
 
 .readMore:hover {
   color: var(--color-theme-green);
-} */
+}
 
 .dumpwall__ideacrad-container-icons {
   -webkit-user-select: none;
