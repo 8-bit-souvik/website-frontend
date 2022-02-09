@@ -1,15 +1,13 @@
-import React from "react";
-import images from "../../../assets/images.jsx";
-import "./Section.css";
+import React from 'react';
+import images from '../../../assets/images.jsx';
+import './Section.css';
 
 const Section = () => {
   return (
     <>
       <div className="dumpwall__section flex__justify">
         <div className="dumpwall__section-leftContainer">
-          <p className="p__normal">
-            Lets get in touch on a virtual coffee date! Juss Kidding!
-          </p>
+          <p className="p__normal">Lets get in touch on a virtual coffee date! Juss Kidding!</p>
           <p className="p__bold">
             Have some suggestions for our community?
             <br />

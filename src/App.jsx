@@ -1,8 +1,8 @@
-import React from "react";
-import "./App.css";
-import { Routes, Route } from "react-router-dom";
-import DumpWall from "./Pages/DumpWall";
-import DumpForm from "./Pages/DumpForm";
+import React from 'react';
+import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import DumpWall from './Pages/DumpWall';
+import DumpForm from './Pages/DumpForm';
 
 const App = () => {
   return (

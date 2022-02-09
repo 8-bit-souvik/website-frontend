@@ -162,11 +162,7 @@
     margin-top: 20px;
     grid-column: 1 / -1;
     grid-row: 2 / 3;
-    background: radial-gradient(
-      circle at 50% 100%,
-      rgba(128, 237, 153, 0.4) 0,
-      transparent 65%
-    );
+    background: radial-gradient(circle at 50% 100%, rgba(128, 237, 153, 0.4) 0, transparent 65%);
   }
 
   .dumpwall__hero-logo img:nth-of-type(2) {
@@ -213,6 +209,6 @@
 
   .productText img {
     width: 155px;
-  transform: translateX(-12px) translateY(-1px);
+    transform: translateX(-12px) translateY(-1px);
   }
 }
