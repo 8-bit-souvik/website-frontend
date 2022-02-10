@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import './IdeaCard.css';
-import { getDocs, doc, updateDoc } from 'firebase/firestore';
-import { ideaRef, db } from '../../firebase.js';
-import Section from './Section';
-import images from '../../../assets/images.jsx';
-import ideaDisplayImages from '../../../assets/DisplayImages';
-import Share from './Share';
+import React, { useEffect, useState } from "react";
+import "./IdeaCard.css";
+import { getDocs, doc, updateDoc } from "firebase/firestore";
+import { ideaRef, db } from "../../firebase.js";
+import Section from "./Section";
+import images from "../../../assets/images.jsx";
+import ideaDisplayImages from "../../../assets/DisplayImages";
+import Share from "./Share";
 
 const LOAD_MORE_SIZE = 4;
-const LOAD_MORE_ACTION = 'Load More';
+const LOAD_MORE_ACTION = "Load More";
 
 // check whether list of ideas has been stored in LS
 const getLocalUpvoted = () => {
-  return JSON.parse(localStorage.getItem('upvoted')) || [];
+  return JSON.parse(localStorage.getItem("upvoted")) || [];
 };
 
 const getLocalDownvoted = () => {
-  return JSON.parse(localStorage.getItem('downvoted')) || [];
+  return JSON.parse(localStorage.getItem("downvoted")) || [];
 };
 
 const RandomDisplayImage = () => {
@@ -68,7 +68,7 @@ const Ideacard = () => {
    *                         false if downvote button is clicked.
    */
   const changeVote = async (id, upvote) => {
-    const ideaToBeUpdated = doc(db, 'ideas', id);
+    const ideaToBeUpdated = doc(db, "ideas", id);
     const idea = ideaList[id];
 
     const isIdeaUpvotedIndex = hasUpVoted.findIndex((val) => val === id);
@@ -142,11 +142,11 @@ const Ideacard = () => {
   };
 
   useEffect(() => {
-    localStorage.setItem('upvoted', JSON.stringify(hasUpVoted));
+    localStorage.setItem("upvoted", JSON.stringify(hasUpVoted));
   }, [hasUpVoted]);
 
   useEffect(() => {
-    localStorage.setItem('downvoted', JSON.stringify(hasDownVoted));
+    localStorage.setItem("downvoted", JSON.stringify(hasDownVoted));
   }, [hasDownVoted]);
 
   const ideaKeys = Object.keys(ideaList);
@@ -159,7 +159,7 @@ const Ideacard = () => {
       <section className="dumpwall__ideacard flex__center section__padding">
         <div className="dumpwall__ideacard-heading">
           <h1 className="dumpwall__ideacard-headtext">
-            Trending{' '}
+            Trending{" "}
             <span>
               Ideas
               <img src={images.ideasTextUnderline} alt="Underline" />
@@ -180,16 +180,19 @@ const Ideacard = () => {
                 </div>
                 <div className="dumpwall__ideacard-container-content">
                   <p className="p__bold">{idea.name}</p>
-                  <p style={{ color: '#97BED6' }} className="p__normal">
+                  <p style={{ color: "#97BED6" }} className="p__normal">
                     {idea.description.substring(0, 500)}...
-                    <button className="p__normal readMore" onClick={() => setIdeaModalStatus(true)}>
-                      Read More
+                    <button
+                      className="p__normal readMore"
+                      onClick={() => setIdeaModalStatus(true)}
+                    >
+                      read more
                     </button>
                   </p>
                   {ideaModalStatus && (
                     <div className="dumpwall__ideacrad-modaWindow-overlay flex__center slide__bottom">
                       <div
-                        style={{ backgroundColor: 'blue' }}
+                        style={{ backgroundColor: "blue" }}
                         className="dumpwall__ideacrad-ideaModaWindow flex__center"
                       >
                         <p
@@ -199,23 +202,28 @@ const Ideacard = () => {
                         >
                           X
                         </p>
-                        <p style={{ fontWeight: '300' }} className="p__bold">
+                        <p style={{ fontWeight: "300" }} className="p__bold">
                           Idea Detail
                         </p>
                         <p className="p__normal">
-                          Feel free to share your ideas and community will help you to turn it into
-                          a product.Feel free to share your ideas and community will help you to
-                          turn it into a product.Feel free to share your ideas and community will
-                          help you to turn it into a product.Feel free to share your ideas and
-                          community will help you to turn it into a product.Feel free to share your
-                          ideas and community will help you to turn it into a product.Feel free to
-                          share your ideas and community will help you to turn it into a
-                          product.Feel free to share your ideas and community will help you to turn
-                          it into a product.Feel free to share your ideas and community will help
-                          you to turn it into a product.Feel free to share your ideas and community
-                          will help you to turn it into a product.Feel free to share your ideas and
-                          community will help you to turn it into a product.Feel free to share your
-                          ideas and community will help you to turn it into a product.
+                          Feel free to share your ideas and community will help
+                          you to turn it into a product.Feel free to share your
+                          ideas and community will help you to turn it into a
+                          product.Feel free to share your ideas and community
+                          will help you to turn it into a product.Feel free to
+                          share your ideas and community will help you to turn
+                          it into a product.Feel free to share your ideas and
+                          community will help you to turn it into a product.Feel
+                          free to share your ideas and community will help you
+                          to turn it into a product.Feel free to share your
+                          ideas and community will help you to turn it into a
+                          product.Feel free to share your ideas and community
+                          will help you to turn it into a product.Feel free to
+                          share your ideas and community will help you to turn
+                          it into a product.Feel free to share your ideas and
+                          community will help you to turn it into a product.Feel
+                          free to share your ideas and community will help you
+                          to turn it into a product.
                         </p>
                         <div className="flex__center"></div>
                         <p className="p__bold">OR</p>
@@ -246,7 +254,10 @@ const Ideacard = () => {
                                 >
                                   X
                                 </p>
-                                <Share idea={ideaList[shareID]} closeModal={setModalStatus} />
+                                <Share
+                                  idea={ideaList[shareID]}
+                                  closeModal={setModalStatus}
+                                />
                               </div>
                             </div>
                           )}
@@ -279,12 +290,12 @@ const Ideacard = () => {
                       </div>
                     </div>
                   )}
-                  <p style={{ color: '#97BED6' }} className="p__normal">
-                    Submitted on:{' '}
-                    {new Date(idea.date).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
+                  <p style={{ color: "#97BED6" }} className="p__normal">
+                    Submitted on:{" "}
+                    {new Date(idea.date).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
                     })}
                   </p>
                 </div>
@@ -313,17 +324,24 @@ const Ideacard = () => {
                         >
                           X
                         </p>
-                        <Share idea={ideaList[shareID]} closeModal={setModalStatus} />
+                        <Share
+                          idea={ideaList[shareID]}
+                          closeModal={setModalStatus}
+                        />
                       </div>
                     </div>
                   )}
-                  // TODO: Fix buttons
+                  {/* TODO: Fix buttons */}
                   <div
                     className="dumpwall__ideacrad-container-icons-upvote flex__center"
                     onClick={() => changeVote(id, true)}
                   >
                     <img
-                      src={ideaUpvoted ? images.upvoteIconFilled : images.upvoteIcon}
+                      src={
+                        ideaUpvoted
+                          ? images.upvoteIconFilled
+                          : images.upvoteIcon
+                      }
                       alt="Upvote"
                       className="dumpwall__ideacard-container-upvote"
                     />
@@ -335,7 +353,11 @@ const Ideacard = () => {
                     onClick={() => changeVote(id, false)}
                   >
                     <img
-                      src={ideaDownvoted ? images.upvoteIconFilled : images.upvoteIcon}
+                      src={
+                        ideaDownvoted
+                          ? images.upvoteIconFilled
+                          : images.upvoteIcon
+                      }
                       alt="Downvote"
                       className="dumpwall__ideacard-container-upvote"
                     />
@@ -349,7 +371,11 @@ const Ideacard = () => {
         })}
         <button
           type="button"
-          className={ideaKeys.length >= listSize ? 'view custom__button' : 'hide custom__button'}
+          className={
+            ideaKeys.length >= listSize
+              ? "view custom__button"
+              : "hide custom__button"
+          }
           onClick={handleListSize}
         >
           {LOAD_MORE_ACTION}
