@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import './Dumpform.css';
-import { addDoc } from 'firebase/firestore';
-import { ideaRef } from '../firebase';
-import { storage } from '../firebase';
-import { ref as storageRef, uploadBytes } from 'firebase/storage';
-import images from '../../assets/images.jsx';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./Dumpform.css";
+import { addDoc } from "firebase/firestore";
+import { ideaRef } from "../firebase";
+import { storage } from "../firebase";
+import { ref as storageRef, uploadBytes } from "firebase/storage";
+import images from "../../assets/images.jsx";
 
 let fileToBeUploaded;
 
@@ -13,10 +13,10 @@ const DumpForm = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [formData, setformData] = useState({
-    name: '',
-    email: '',
-    description: '',
-    imageURL: '',
+    name: "",
+    email: "",
+    description: "",
+    imageURL: "",
   });
 
   const handleChange = (e) => {
@@ -40,20 +40,23 @@ const DumpForm = () => {
         description: description,
         votes: 0,
         date: Date.now(),
-        imageURL: imageURL ? imageURL : '',
+        imageURL: imageURL ? imageURL : "",
       });
 
       const newID = newRef.id;
 
       if (fileToBeUploaded) {
-        const fileRef = storageRef(storage, `ideaForm/${newID}/desc-1-${fileToBeUploaded.name}`);
+        const fileRef = storageRef(
+          storage,
+          `ideaForm/${newID}/desc-1-${fileToBeUploaded.name}`
+        );
         const result = await uploadBytes(fileRef, fileToBeUploaded);
       }
 
-      setformData({ name: '', email: '', description: '' });
+      setformData({ name: "", email: "", description: "" });
 
-      alert('Idea Submitted');
-      navigate('/');
+      alert("Idea Submitted");
+      navigate("/");
     }
   };
 
@@ -76,7 +79,8 @@ const DumpForm = () => {
           </h1>
 
           <p id="form__msg">
-            Feel free to share your ideas and the community will help you to turn it into a product.
+            Feel free to share your ideas and the community will help you to
+            turn it into a product.
           </p>
         </div>
         <form className="form__container">
@@ -132,7 +136,7 @@ const DumpForm = () => {
             className="input__field drop__zone"
             title="Drop Your Graphical Description Here"
           >
-            <img src={''} alt="" className="upload__img" />
+            <img src={""} alt="" className="upload__img" />
           </div>
           <label htmlFor="imageURL" className="input__lables">
             Please share any Relavent Link ( Figma, etc )

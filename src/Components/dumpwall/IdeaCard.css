@@ -79,7 +79,7 @@
 
 .readMore::after {
   display: block;
-  content: '';
+  content: "";
   color: var(--color-theme-green);
 }
 
@@ -169,7 +169,11 @@
 .dumpwall__ideacrad-modaWindow-iconsContainer {
   width: 425px;
   height: 250px;
-  background-image: linear-gradient(to bottom, rgba(5, 42, 66, 1), rgba(128, 237, 153, 1) 250%);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(5, 42, 66, 1),
+    rgba(128, 237, 153, 1) 250%
+  );
   position: relative;
   border-radius: 10px;
 }
