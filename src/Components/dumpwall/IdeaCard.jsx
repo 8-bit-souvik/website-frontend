@@ -188,15 +188,22 @@ const Ideacard = () => {
                 <div className="dumpwall__ideacard-container-content">
                   <p className="p__bold">{idea.name}</p>
                   <p style={{ color: '#97BED6' }} className="p__normal">
+                    {idea.description}
+                  </p>
+                  {/* <p className="p__bold">{idea.name}</p>
+                  <p style={{ color: "#97BED6" }} className="p__normal">
                     {idea.description.substring(0, 500)}...
-                    <button className="p__normal readMore" onClick={() => setIdeaModalStatus(true)}>
-                      Read More
+                    <button
+                      className="p__normal readMore"
+                      onClick={() => setIdeaModalStatus(true)}
+                    >
+                      read more
                     </button>
                   </p>
                   {ideaModalStatus && (
                     <div className="dumpwall__ideacrad-modaWindow-overlay flex__center slide__bottom">
                       <div
-                        style={{ backgroundColor: 'blue' }}
+                        style={{ backgroundColor: "blue" }}
                         className="dumpwall__ideacrad-ideaModaWindow flex__center"
                       >
                         <p
@@ -206,23 +213,28 @@ const Ideacard = () => {
                         >
                           X
                         </p>
-                        <p style={{ fontWeight: '300' }} className="p__bold">
+                        <p style={{ fontWeight: "300" }} className="p__bold">
                           Idea Detail
                         </p>
                         <p className="p__normal">
-                          Feel free to share your ideas and community will help you to turn it into
-                          a product.Feel free to share your ideas and community will help you to
-                          turn it into a product.Feel free to share your ideas and community will
-                          help you to turn it into a product.Feel free to share your ideas and
-                          community will help you to turn it into a product.Feel free to share your
-                          ideas and community will help you to turn it into a product.Feel free to
-                          share your ideas and community will help you to turn it into a
-                          product.Feel free to share your ideas and community will help you to turn
-                          it into a product.Feel free to share your ideas and community will help
-                          you to turn it into a product.Feel free to share your ideas and community
-                          will help you to turn it into a product.Feel free to share your ideas and
-                          community will help you to turn it into a product.Feel free to share your
-                          ideas and community will help you to turn it into a product.
+                          Feel free to share your ideas and community will help
+                          you to turn it into a product.Feel free to share your
+                          ideas and community will help you to turn it into a
+                          product.Feel free to share your ideas and community
+                          will help you to turn it into a product.Feel free to
+                          share your ideas and community will help you to turn
+                          it into a product.Feel free to share your ideas and
+                          community will help you to turn it into a product.Feel
+                          free to share your ideas and community will help you
+                          to turn it into a product.Feel free to share your
+                          ideas and community will help you to turn it into a
+                          product.Feel free to share your ideas and community
+                          will help you to turn it into a product.Feel free to
+                          share your ideas and community will help you to turn
+                          it into a product.Feel free to share your ideas and
+                          community will help you to turn it into a product.Feel
+                          free to share your ideas and community will help you
+                          to turn it into a product.
                         </p>
                         <div className="flex__center"></div>
                         <p className="p__bold">OR</p>
@@ -253,39 +265,17 @@ const Ideacard = () => {
                                 >
                                   X
                                 </p>
-                                <Share idea={ideaList[shareID]} closeModal={setModalStatus} />
+                                <Share
+                                  idea={ideaList[shareID]}
+                                  closeModal={setModalStatus}
+                                />
                               </div>
                             </div>
                           )}
-                          {/* <div
-                            className="dumpwall__ideacrad-container-icons-upvote flex__center"
-                            onClick={() => changeVote(id, !ideaUpvoted)}
-                          >
-                            <img
-                              src={ideaUpvoted ? images.upvoteIconFilled : images.upvoteIcon}
-                              alt="Upvote"
-                              className="dumpwall__ideacard-container-upvote"
-                            />
-                            <p className="p__normal">Upvote</p>
-                            <p className="p__normal">{idea.votes}</p>
-                          </div> */}
-
-                          {/* <div
-                            className="dumpwall__ideacrad-container-icons-upvote flex__center kek"
-                            onClick={() => changeVote(id, !ideaUpvoted)}
-                          >
-                            <img
-                              src={ideaDownvoted ? images.upvoteIconFilled : images.upvoteIcon}
-                              alt="Downvote"
-                              className="dumpwall__ideacard-container-upvote"
-                            />
-                            <p className="p__normal">Downvote</p>
-                            <p className="p__normal">{idea.votes}</p>
-                          </div> */}
                         </div>
                       </div>
                     </div>
-                  )}
+                  )} */}
                   <p style={{ color: '#97BED6' }} className="p__normal">
                     Submitted on:{' '}
                     {new Date(idea.date).toLocaleDateString('en-US', {
@@ -324,7 +314,7 @@ const Ideacard = () => {
                       </div>
                     </div>
                   )}
-                  // TODO: Fix buttons
+                  {/* TODO: Fix buttons */}
                   <div
                     className="dumpwall__ideacrad-container-icons-upvote flex__center"
                     onClick={() => changeVote(id, true)}
@@ -334,19 +324,7 @@ const Ideacard = () => {
                       alt="Upvote"
                       className="dumpwall__ideacard-container-upvote"
                     />
-                    <p className="p__normal">Upvote</p>
-                    <p className="p__normal">{idea.votes}</p>
-                  </div>
-                  <div
-                    className="dumpwall__ideacrad-container-icons-downvote flex__center"
-                    onClick={() => changeVote(id, false)}
-                  >
-                    <img
-                      src={ideaDownvoted ? images.upvoteIconFilled : images.upvoteIcon}
-                      alt="Downvote"
-                      className="dumpwall__ideacard-container-upvote"
-                    />
-                    <p className="p__normal">Downvote</p>
+                    <p className="p__normal">{ideaUpvoted ? 'Upvoted' : 'Upvote'}</p>
                     <p className="p__normal">{idea.votes}</p>
                   </div>
                 </div>

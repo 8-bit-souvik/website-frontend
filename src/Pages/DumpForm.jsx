@@ -91,6 +91,7 @@ const DumpForm = () => {
             value={formData.name}
             onChange={handleChange}
             required
+            maxLength={50}
             autoComplete="off"
           />
           <label htmlFor="email" className="input__lables">
@@ -117,6 +118,7 @@ const DumpForm = () => {
             value={formData.description}
             onChange={handleChange}
             required
+            maxLength={350}
             autoComplete="off"
           />
           <label htmlFor="dropzone" className="input__lables">
