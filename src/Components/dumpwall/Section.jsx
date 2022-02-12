@@ -1,5 +1,5 @@
 import React from 'react';
-import images from '../../../assets/images.jsx';
+import images from '../../images.jsx';
 import './Section.css';
 
 const Section = () => {

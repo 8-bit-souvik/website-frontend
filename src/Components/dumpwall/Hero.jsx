@@ -1,7 +1,7 @@
 import React from 'react';
 import './Hero.css';
 import { Link } from 'react-router-dom';
-import images from '../../../assets/images';
+import images from '../../images';
 
 const Hero = () => (
   <div className="dumpwall__hero flex__justify section__padding">

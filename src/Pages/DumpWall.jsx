@@ -1,14 +1,14 @@
 import React from 'react';
 import Navbar from '../Components/dumpwall/Navbar';
 import Hero from '../Components/dumpwall/Hero';
-import IdeaCard from '../Components/dumpwall/IdeaCard';
+import IdeaList from '../Components/dumpwall/IdeaList';
 import Footer from '../Components/dumpwall/Footer';
 
 const Dumpwall = () => (
   <div className="body__bg">
     <Navbar />
     <Hero />
-    <IdeaCard />
+    <IdeaList />
     <Footer />
   </div>
 );

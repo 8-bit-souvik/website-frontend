@@ -5,7 +5,7 @@ import { addDoc } from 'firebase/firestore';
 import { ideaRef } from '../firebase';
 import { storage } from '../firebase';
 import { ref as storageRef, uploadBytes } from 'firebase/storage';
-import images from '../../assets/images.jsx';
+import images from '../images.jsx';
 
 let fileToBeUploaded;
 
