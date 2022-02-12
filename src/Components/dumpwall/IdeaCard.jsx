@@ -345,23 +345,9 @@ const Ideacard = () => {
                       alt="Upvote"
                       className="dumpwall__ideacard-container-upvote"
                     />
-                    <p className="p__normal">Upvote</p>
-                    <p className="p__normal">{idea.votes}</p>
-                  </div>
-                  <div
-                    className="dumpwall__ideacrad-container-icons-downvote flex__center"
-                    onClick={() => changeVote(id, false)}
-                  >
-                    <img
-                      src={
-                        ideaDownvoted
-                          ? images.upvoteIconFilled
-                          : images.upvoteIcon
-                      }
-                      alt="Downvote"
-                      className="dumpwall__ideacard-container-upvote"
-                    />
-                    <p className="p__normal">Downvote</p>
+                    <p className="p__normal">
+                      {ideaUpvoted ? "Upvoted" : "Upvote"}
+                    </p>
                     <p className="p__normal">{idea.votes}</p>
                   </div>
                 </div>
