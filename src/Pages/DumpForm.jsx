@@ -118,7 +118,7 @@ const DumpForm = () => {
             value={formData.description}
             onChange={handleChange}
             required
-            maxLength={350}
+            maxLength={1000}
             autoComplete="off"
           />
           <label htmlFor="dropzone" className="input__lables">

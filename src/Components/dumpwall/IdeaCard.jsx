@@ -24,10 +24,12 @@ const RandomDisplayImage = ({ id }) => {
 
 export default ({ id, idea, hasUpVoted, hasDownVoted, changeVote }) => {
   const [modalStatus, setModalStatus] = useState(false);
+  const [readMore, setReadMore] = useState(false);
 
   const ideaUpvoted = hasUpVoted.includes(id);
   const ideaDownvoted = hasDownVoted.includes(id);
 
+  console.log(readMore);
   return (
     <div key={id} className="dumpwall__ideacard-container">
       <div className="dumpwall__ideacard-container-img flex__center">
@@ -36,8 +38,18 @@ export default ({ id, idea, hasUpVoted, hasDownVoted, changeVote }) => {
       <div className="dumpwall__ideacard-container-content">
         <p className="p__bold">{idea.name}</p>
         <p style={{ color: '#97BED6' }} className="p__normal">
-          {idea.description}
+          {readMore ? idea.description : idea.description.substring(0, 500)}
         </p>
+        {idea.description.length > 500 && (
+          // TODO: Fix this button
+          <button
+            style={{ color: '#97BED6' }}
+            className="p__normal"
+            onClick={() => setReadMore(!readMore)}
+          >
+            {!readMore ? 'Read more' : 'Read less'}
+          </button>
+        )}
         <p style={{ color: '#97BED6' }} className="p__normal">
           Submitted on:{' '}
           {new Date(idea.date).toLocaleDateString('en-US', {
