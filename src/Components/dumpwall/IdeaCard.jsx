@@ -33,7 +33,9 @@ const RandomDisplayImage = ({ id }) => {
     localStorage.setItem('image_display', JSON.stringify(image));
   }
 
-  return <img src={ideaDisplayImages[imgNo]} alt="Random image" />;
+  return (
+    <img className="dumpwall__ideacard__img" src={ideaDisplayImages[imgNo]} alt="Random image" />
+  );
 };
 
 const Ideacard = () => {
