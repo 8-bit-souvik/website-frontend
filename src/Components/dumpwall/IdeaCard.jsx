@@ -176,10 +176,18 @@ const Ideacard = () => {
             return (
               <div key={id} className="dumpwall__ideacard-container">
                 <div className="dumpwall__ideacard-container-img flex__center">
-                  <RandomDisplayImage />
+                  {/* <RandomDisplayImage /> */}
+                  <img
+                    src={`https://avatars.dicebear.com/api/pixel-art/${Math.random()}.svg`}
+                    alt=""
+                  />
                 </div>
                 <div className="dumpwall__ideacard-container-content">
                   <p className="p__bold">{idea.name}</p>
+                  <p style={{ color: "#97BED6" }} className="p__normal">
+                    {idea.description}
+                  </p>
+                  {/* <p className="p__bold">{idea.name}</p>
                   <p style={{ color: "#97BED6" }} className="p__normal">
                     {idea.description.substring(0, 500)}...
                     <button
@@ -261,35 +269,10 @@ const Ideacard = () => {
                               </div>
                             </div>
                           )}
-                          {/* <div
-                            className="dumpwall__ideacrad-container-icons-upvote flex__center"
-                            onClick={() => changeVote(id, !ideaUpvoted)}
-                          >
-                            <img
-                              src={ideaUpvoted ? images.upvoteIconFilled : images.upvoteIcon}
-                              alt="Upvote"
-                              className="dumpwall__ideacard-container-upvote"
-                            />
-                            <p className="p__normal">Upvote</p>
-                            <p className="p__normal">{idea.votes}</p>
-                          </div> */}
-
-                          {/* <div
-                            className="dumpwall__ideacrad-container-icons-upvote flex__center kek"
-                            onClick={() => changeVote(id, !ideaUpvoted)}
-                          >
-                            <img
-                              src={ideaDownvoted ? images.upvoteIconFilled : images.upvoteIcon}
-                              alt="Downvote"
-                              className="dumpwall__ideacard-container-upvote"
-                            />
-                            <p className="p__normal">Downvote</p>
-                            <p className="p__normal">{idea.votes}</p>
-                          </div> */}
                         </div>
                       </div>
                     </div>
-                  )}
+                  )} */}
                   <p style={{ color: "#97BED6" }} className="p__normal">
                     Submitted on:{" "}
                     {new Date(idea.date).toLocaleDateString("en-US", {
