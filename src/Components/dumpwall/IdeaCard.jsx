@@ -19,14 +19,21 @@ const getLocalDownvoted = () => {
   return JSON.parse(localStorage.getItem('downvoted')) || [];
 };
 
-const RandomDisplayImage = () => {
-  let imgNo = 1;
-  return ideaDisplayImages
-    .filter((imgId) => imgId.id == imgNo)
-    .map((image) => {
-      return <img src={image} alt="" />;
-      imgNo = (imgNo % 4) + 1;
-    });
+function getRandomArbitrary(min, max) {
+  return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+}
+
+const RandomDisplayImage = ({ id }) => {
+  const image = JSON.parse(localStorage.getItem('image_display')) || {};
+  let imgNo = image[id];
+  if (!imgNo) {
+    imgNo = getRandomArbitrary(0, ideaDisplayImages.length);
+
+    image[id] = imgNo;
+    localStorage.setItem('image_display', JSON.stringify(image));
+  }
+
+  return <img src={ideaDisplayImages[imgNo]} alt="Random image" />;
 };
 
 const Ideacard = () => {
@@ -176,7 +183,7 @@ const Ideacard = () => {
             return (
               <div key={id} className="dumpwall__ideacard-container">
                 <div className="dumpwall__ideacard-container-img flex__center">
-                  <RandomDisplayImage />
+                  <RandomDisplayImage id={id} />
                 </div>
                 <div className="dumpwall__ideacard-container-content">
                   <p className="p__bold">{idea.name}</p>
