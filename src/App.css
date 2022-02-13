@@ -1,17 +1,7 @@
 .body__bg {
   min-height: 100vh;
-  background-image: radial-gradient(
-      circle at 0% 0%,
-      #80ed99 0,
-      #006ead 20%,
-      transparent 50%
-    ),
-    radial-gradient(
-      circle at 60% 22.5%,
-      #80ed99 0,
-      #006ead 25%,
-      transparent 50%
-    ),
+  background-image: radial-gradient(circle at 0% 0%, #80ed99 0, #006ead 20%, transparent 50%),
+    radial-gradient(circle at 60% 22.5%, #80ed99 0, #006ead 25%, transparent 50%),
     radial-gradient(circle at 0 50%, #80ed99 0, #006ead 25%, transparent 50%),
     radial-gradient(circle at 100% 65%, #80ed99 0, #006ead 25%, transparent 50%);
   background-color: #006ead;
@@ -38,6 +28,7 @@
   font-weight: 400;
   letter-spacing: 0.04em;
   font-size: 12px;
+  word-break: break-word;
 }
 
 .p__bold {
@@ -82,25 +73,10 @@
 
 @media screen and (min-width: 2000px) {
   .body__bg {
-    background-image: radial-gradient(
-        circle at 0% 0%,
-        #80ed99 0,
-        #006ead 20%,
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at 70% 22.5%,
-        #80ed99 0,
-        #006ead 25%,
-        transparent 50%
-      ),
+    background-image: radial-gradient(circle at 0% 0%, #80ed99 0, #006ead 20%, transparent 50%),
+      radial-gradient(circle at 70% 22.5%, #80ed99 0, #006ead 25%, transparent 50%),
       radial-gradient(circle at 0 50%, #80ed99 0, #006ead 25%, transparent 50%),
-      radial-gradient(
-        circle at 100% 65%,
-        #80ed99 0,
-        #006ead 25%,
-        transparent 50%
-      );
+      radial-gradient(circle at 100% 65%, #80ed99 0, #006ead 25%, transparent 50%);
   }
 
   .p__bold {
@@ -117,12 +93,7 @@
         transparent 100%
       ),
       radial-gradient(circle at 0 50%, #80ed99 0, #006ead 25%, transparent 50%),
-      radial-gradient(
-        circle at 100% 65%,
-        #80ed99 0,
-        #006ead 25%,
-        transparent 50%
-      );
+      radial-gradient(circle at 100% 65%, #80ed99 0, #006ead 25%, transparent 50%);
   }
 }
 

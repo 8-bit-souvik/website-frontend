@@ -1,7 +1,7 @@
-import React from "react";
-import "./Hero.css";
-import { Link } from "react-router-dom";
-import images from "../../../assets/images";
+import React from 'react';
+import './Hero.css';
+import { Link } from 'react-router-dom';
+import images from '../../images';
 
 const Hero = () => (
   <div className="dumpwall__hero flex__justify section__padding">
@@ -10,7 +10,8 @@ const Hero = () => (
         Convert your
         <br />
         <span>
-          ideas to <span className="productText">
+          ideas to{' '}
+          <span className="productText">
             product
             <img src={images.productTextWrapper} alt="" />
           </span>
@@ -18,11 +19,7 @@ const Hero = () => (
       </h1>
       <div className="dumpwall__hero-logo">
         <div className="flex__center header__logo-container">
-          <img
-            src={images.headerLogo}
-            alt="DezenixLogo"
-            className="header__logo"
-          />
+          <img src={images.headerLogo} alt="DezenixLogo" className="header__logo" />
           <img src={images.cylinder} alt="" />
         </div>
       </div>

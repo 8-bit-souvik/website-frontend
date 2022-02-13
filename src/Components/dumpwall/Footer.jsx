@@ -1,6 +1,6 @@
-import React from "react";
-import "./Footer.css";
-import images from "../../../assets/images.jsx";
+import React from 'react';
+import './Footer.css';
+import images from '../../images';
 
 const Footer = () => {
   return (
@@ -18,18 +18,11 @@ const Footer = () => {
           </p>
         </div>
         <div className="dumpwall__footer-container">
-          <h2
-            style={{ padding: "4px 0" }}
-            className="dumpwall__footer-container-heading p__bold"
-          >
+          <h2 style={{ padding: '4px 0' }} className="dumpwall__footer-container-heading p__bold">
             Join Us Now
           </h2>
           <span className="join__link__icons">
-            <a
-              href="https://github.com/dezenix"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://github.com/dezenix" target="_blank" rel="noopener noreferrer">
               <img className="link__icons" src={images.githubIcon} alt="" />
             </a>
             <a
@@ -39,11 +32,7 @@ const Footer = () => {
             >
               <img className="link__icons" src={images.linkedinIcon} alt="" />
             </a>
-            <a
-              href="https://discord.io/dezenix"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://discord.io/dezenix" target="_blank" rel="noopener noreferrer">
               <img className="link__icons" src={images.discordIcon} alt="" />
             </a>
             <a
@@ -53,11 +42,7 @@ const Footer = () => {
             >
               <img className="link__icons" src={images.instagramIcon} alt="" />
             </a>
-            <a
-              href="https://twitter.com/dezenix"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://twitter.com/dezenix" target="_blank" rel="noopener noreferrer">
               <img className="link__icons" src={images.twitterIcon} alt="" />
             </a>
           </span>

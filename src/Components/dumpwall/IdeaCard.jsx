@@ -1,200 +1,86 @@
-import React, { useEffect, useState } from "react";
-import "./IdeaCard.css";
-import { getDocs, doc, updateDoc } from "firebase/firestore";
-import { ideaRef, db } from "../../firebase.js";
-import Section from "./Section";
-import images from "../../../assets/images.jsx";
-import Share from "./Share";
+import React, { useEffect, useState } from 'react';
+import images, { ideaDisplayImages } from '../../images.jsx';
+import Share from './Share';
+import ShareModal from './ShareModal.jsx';
 
-const LOAD_MORE_SIZE = 4;
-const LOAD_MORE_ACTION = "Load More";
+function getRandomArbitrary(min, max) {
+  return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+}
 
-// check whether list of ideas has been stored in LS
-const getLocalIdeas = () => {
-  let list = localStorage.getItem("ideas");
-  if (list) {
-    return JSON.parse(localStorage.getItem("ideas"));
-  } else {
-    return [];
+const RandomDisplayImage = ({ id }) => {
+  const image = JSON.parse(localStorage.getItem('image_display')) || {};
+  let imgNo = image[id];
+  if (!imgNo) {
+    imgNo = getRandomArbitrary(0, ideaDisplayImages.length);
+
+    image[id] = imgNo;
+    localStorage.setItem('image_display', JSON.stringify(image));
   }
-};
-
-const Ideacard = () => {
-  const [listDisplayAction, setAction] = useState(LOAD_MORE_ACTION);
-  const [ideaList, setIdeaList] = useState({});
-  const [listSize, setListSize] = useState(LOAD_MORE_SIZE);
-  const [hasVoted, setHasVoted] = useState(getLocalIdeas()); // ['id', 'id1', 'id2'...]
-  const [modalStatus, setModalStatus] = useState(false);
-  const [shareID, setShareID] = useState(null);
-  const [ideaModalStatus, setIdeaModalStatus] = useState(false);
-
-  useEffect(async () => {
-    const docs = await getDocs(ideaRef);
-    for (const idea of docs.docs) {
-      const data = idea.data();
-      const id = idea.id;
-      if (!ideaList[id]) {
-        const tmpIdeaList = ideaList;
-        tmpIdeaList[id] = data;
-        setIdeaList({ ...tmpIdeaList });
-      }
-    }
-  }, []);
-
-  const handleListSize = () => {
-    setListSize(listSize + LOAD_MORE_SIZE);
-  };
-
-  const changeVote = async (id, upvote) => {
-    const ideaToBeUpdated = doc(db, "ideas", id);
-    const idea = ideaList[id];
-    const votes = upvote ? idea.votes + 1 : idea.votes - 1;
-
-    if (upvote && !hasVoted.includes(id)) {
-      setHasVoted([...hasVoted, id]);
-    }
-
-    if (!upvote && hasVoted.includes(id)) {
-      const index = hasVoted.findIndex((val) => val === id);
-      setHasVoted([
-        ...hasVoted.slice(0, index),
-        ...hasVoted.slice(index + 1, hasVoted.length),
-      ]);
-    }
-
-    const tmpIdeaList = ideaList;
-    tmpIdeaList[id] = { ...idea, votes };
-    setIdeaList({ ...tmpIdeaList });
-
-    await updateDoc(ideaToBeUpdated, { votes });
-  };
-
-  useEffect(
-    (id) => {
-      localStorage.setItem("ideas", JSON.stringify(hasVoted));
-    },
-    [hasVoted]
-  );
-
-  const ideaKeys = Object.keys(ideaList);
-  ideaKeys.sort((a, b) => {
-    return ideaList[b].votes - ideaList[a].votes;
-  });
 
   return (
-    <>
-      <section className="dumpwall__ideacard flex__center section__padding">
-        <div className="dumpwall__ideacard-heading">
-          <h1 className="dumpwall__ideacard-headtext">
-            Trending{" "}
-            <span>
-              Ideas
-              <img src={images.ideasTextUnderline} alt="Underline" />
-            </span>
-          </h1>
-        </div>
-
-        {ideaKeys.map((id, index) => {
-          const idea = ideaList[id];
-          const ideaUpvoted = hasVoted.includes(id);
-
-          if (index + 1 <= listSize) {
-            return (
-              <div key={id} className="dumpwall__ideacard-container">
-                <div className="dumpwall__ideacard-container-img flex__center">
-                  <img
-                    src={`https://avatars.dicebear.com/api/pixel-art/${Math.random()}.svg`}
-                    alt=""
-                  />
-                </div>
-                <div className="dumpwall__ideacard-container-content">
-                  <p className="p__bold">{idea.name}</p>
-                  <p style={{ color: "#97BED6" }} className="p__normal">
-                    {idea.description}
-                    {/* {idea.description.substring(0, 500)}...
-                    <button className="readMore" onClick={}>Read More</button> */}
-                  </p>
-                  <p style={{ color: "#97BED6" }} className="p__normal">
-                    Submitted on:{" "}
-                    {new Date(idea.date).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </p>
-                </div>
-                <div className="dumpwall__ideacrad-container-icons flex__justify">
-                  <div
-                    className="dumpwall__ideacrad-container-icons-share flex__center"
-                    onClick={() => {
-                      setShareID(id);
-                      setModalStatus(true);
-                    }}
-                  >
-                    <img
-                      src={images.shareIcon}
-                      alt="Share"
-                      className="dumpwall__ideacard-container-share"
-                    />
-                    <p className="p__normal">Share</p>
-                  </div>
-                  {modalStatus && (
-                    <div className="dumpwall__ideacrad-modaWindow-overlay flex__center">
-                      <div className="dumpwall__ideacrad-modaWindow-iconsContainer flex__center">
-                        <p
-                          title="Close"
-                          className="dumpwall__ideacrad-modaWindow-modalClose p__bold"
-                          onClick={() => setModalStatus(false)}
-                        >
-                          X
-                        </p>
-                        <Share
-                          idea={ideaList[shareID]}
-                          closeModal={setModalStatus}
-                        />
-                      </div>
-                    </div>
-                  )}
-                  <div
-                    className="dumpwall__ideacrad-container-icons-upvote flex__center"
-                    onClick={() => changeVote(id, !ideaUpvoted)}
-                  >
-                    <img
-                      src={
-                        ideaUpvoted
-                          ? images.upvoteIconFilled
-                          : images.upvoteIcon
-                      }
-                      alt="Upvote"
-                      className="dumpwall__ideacard-container-upvote"
-                    />
-                    <p className="p__normal">
-                      {ideaUpvoted ? "Downvote" : "Upvote"}
-                    </p>
-                    <p className="p__normal">{idea.votes}</p>
-                  </div>
-                </div>
-              </div>
-            );
-          }
-        })}
-        <button
-          type="button"
-          className={
-            ideaKeys.length >= listSize
-              ? "view custom__button"
-              : "hide custom__button"
-          }
-          onClick={handleListSize}
-        >
-          {listDisplayAction}
-        </button>
-        <div className="dumpwall__section-container flex__center">
-          <Section />
-        </div>
-      </section>
-    </>
+    <img className="dumpwall__ideacard__img" src={ideaDisplayImages[imgNo]} alt="Random image" />
   );
 };
 
-export default Ideacard;
+export default ({ id, idea, hasUpVoted, hasDownVoted, changeVote }) => {
+  const [modalStatus, setModalStatus] = useState(false);
+  const [readMore, setReadMore] = useState(false);
+
+  const ideaUpvoted = hasUpVoted.includes(id);
+  const ideaDownvoted = hasDownVoted.includes(id);
+
+  console.log(readMore);
+  return (
+    <div key={id} className="dumpwall__ideacard-container">
+      <div className="dumpwall__ideacard-container-img flex__center">
+        <RandomDisplayImage id={id} />
+      </div>
+      <div className="dumpwall__ideacard-container-content">
+        <p className="p__bold">{idea.name}</p>
+        <p style={{ color: '#97BED6' }} className="p__normal">
+          {readMore ? idea.description : idea.description.substring(0, 500)}
+        {(idea.description.length) > 500 && (
+          // TODO: Fix this button
+          <button
+            className="readMore"
+            onClick={() => setReadMore(!readMore)}
+          >
+            {!readMore ? '... Read more' : '. Show less'}
+          </button>
+        )}
+        </p>
+        <p style={{ color: '#97BED6' }} className="p__normal">
+          Submitted on:{' '}
+          {new Date(idea.date).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })}
+        </p>
+      </div>
+      <div className="dumpwall__ideacrad-container-icons flex__justify">
+        <div
+          className="dumpwall__ideacrad-container-icons-share flex__center"
+          onClick={() => setModalStatus(true)}
+        >
+          <img src={images.shareIcon} alt="Share" className="dumpwall__ideacard-container-share" />
+          <p className="p__normal">Share</p>
+        </div>
+        {modalStatus && <ShareModal idea={idea} setModalStatus={setModalStatus} />}
+        {/* TODO: Fix buttons */}
+        <div
+          className="dumpwall__ideacrad-container-icons-upvote flex__center"
+          onClick={() => changeVote(id, true)}
+        >
+          <img
+            src={ideaUpvoted ? images.upvoteIconFilled : images.upvoteIcon}
+            alt="Upvote"
+            className="dumpwall__ideacard-container-upvote"
+          />
+          <p className="p__normal">{ideaUpvoted ? 'Upvoted' : 'Upvote'}</p>
+          <p className="p__normal">{idea.votes}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
