@@ -39,17 +39,16 @@ export default ({ id, idea, hasUpVoted, hasDownVoted, changeVote }) => {
         <p className="p__bold">{idea.name}</p>
         <p style={{ color: '#97BED6' }} className="p__normal">
           {readMore ? idea.description : idea.description.substring(0, 500)}
-        </p>
-        {idea.description.length > 500 && (
+        {(idea.description.length) > 500 && (
           // TODO: Fix this button
           <button
-            style={{ color: '#97BED6' }}
-            className="p__normal"
+            className="readMore"
             onClick={() => setReadMore(!readMore)}
           >
-            {!readMore ? 'Read more' : 'Read less'}
+            {!readMore ? '... Read more' : '. Show less'}
           </button>
         )}
+        </p>
         <p style={{ color: '#97BED6' }} className="p__normal">
           Submitted on:{' '}
           {new Date(idea.date).toLocaleDateString('en-US', {
