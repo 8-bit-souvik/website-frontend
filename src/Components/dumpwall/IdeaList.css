@@ -41,9 +41,14 @@
   max-width: 7.5rem;
   min-height: 7.5rem;
   max-height: 7.5rem;
-  border: 1px solid rgb(255, 255, 255, 0.1);
+  /* border: 1px solid rgb(255, 255, 255, 0.1); */
   border-radius: 5px;
   pointer-events: none;
+}
+
+.dumpwall__ideacard-container-randomImg {
+  width: 100%;
+  object-fit: cover;
 }
 
 .dumpwall__ideacard-container-content {
@@ -65,10 +70,11 @@
 }
 
 .readMore {
+  display: inline-block;
   background-color: transparent;
   border: none;
   color: white;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   line-height: 150%;
   cursor: pointer;
@@ -228,6 +234,10 @@
   .dumpwall__ideacrad-container-icons-downvote {
     width: 7rem;
     height: 7rem;
+  }
+
+  .readMore {
+    font-size: 22.5px;
   }
 }
 
