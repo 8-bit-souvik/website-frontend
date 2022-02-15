@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Dumpform.css';
 import { addDoc } from 'firebase/firestore';
@@ -10,8 +10,11 @@ import images from '../images.jsx';
 let fileToBeUploaded;
 
 const DumpForm = () => {
+  const inputFile = useRef(null);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [fileToBeUploaded, setfileToBeUploaded] = useState('');
+
   const [formData, setformData] = useState({
     name: '',
     email: '',
@@ -57,11 +60,23 @@ const DumpForm = () => {
     }
   };
 
-  const onImageDropped = (event, id) => {
-    event.preventDefault();
-    fileToBeUploaded = event.dataTransfer.files[0];
+  const onImageClicked = () => {
+    inputFile.current.click();
+    // fileToBeUploaded = event.dataTransfer.files[0];
+  };
 
-    console.log(fileToBeUploaded);
+  const onImageChanged = (e) => {
+    e.preventDefault();
+    setfileToBeUploaded(e.target.files[0]);
+
+    console.log(e.target.files[0]);
+  };
+
+  const onImageDropped = (event) => {
+    event.preventDefault();
+    setfileToBeUploaded(c);
+
+    console.log(event.dataTransfer.files[0]);
   };
 
   return (
@@ -94,6 +109,17 @@ const DumpForm = () => {
             maxLength={50}
             autoComplete="off"
           />
+
+          {/* Work around for opening file picker */}
+          <label htmlFor="filePicker" className="input__lables" />
+          <input
+            id="filePicker"
+            onChange={onImageChanged}
+            ref={inputFile}
+            type="file"
+            style={{ display: 'none' }}
+          />
+
           <label htmlFor="email" className="input__lables">
             Enter email address:<span className="asteriks">*</span>
           </label>
@@ -124,16 +150,20 @@ const DumpForm = () => {
           <label htmlFor="dropzone" className="input__lables">
             Please share Graphical Description (If any)
           </label>
+
+          {/* TODO: Style this properly */}
           <div
             draggable
             onDragOver={(e) => {
               e.preventDefault();
               e.stopPropagation();
             }}
+            onClick={onImageClicked}
             onDrop={(event) => onImageDropped(event)}
             className="input__field drop__zone"
             title="Drop Your Graphical Description Here"
           >
+            {fileToBeUploaded.name}
             <img src={''} alt="" className="upload__img" />
           </div>
           <label htmlFor="imageURL" className="input__lables">
